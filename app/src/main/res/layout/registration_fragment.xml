@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.registrationAndLogin.RegistrationFragment">
+
+    <LinearLayout
+        android:id="@+id/linear_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_outline_arrow_back_24"
+            app:tint="@color/blue_800" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif"
+            android:text="@string/txt_register"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_800"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_register_username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:hint="@string/hint_username"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_reg"
+        app:startIconDrawable="@drawable/ic_outline_person_outline_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textedit_register_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:hint="@string/hint_email"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius"
+        app:layout_constraintLeft_toLeftOf="@id/textInput_register_username"
+        app:layout_constraintRight_toRightOf="@id/textInput_register_username"
+        app:layout_constraintTop_toBottomOf="@id/textInput_register_username"
+        app:startIconDrawable="@drawable/ic_outline_email_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textedit_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:hint="@string/hint_password"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius"
+        app:layout_constraintLeft_toLeftOf="@id/textInput_email"
+        app:layout_constraintRight_toRightOf="@id/textInput_email"
+        app:layout_constraintTop_toBottomOf="@id/textInput_email"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textedit_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ProgressBar
+        android:id="@+id/password_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        app:layout_constraintRight_toLeftOf="@id/tv_password_strength"
+        android:maxHeight="20dp"
+        android:minHeight="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textInput_password"
+        app:layout_constraintLeft_toLeftOf="@id/textInput_password"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/tv_password_strength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:text="@string/password_strength_weak"
+        app:layout_constraintTop_toBottomOf="@id/textInput_password"
+        app:layout_constraintRight_toRightOf="@id/textInput_password"
+        app:layout_constraintLeft_toRightOf="@id/password_progressbar" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_register"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/btn_register"
+        app:layout_constraintLeft_toLeftOf="@id/btn_register"
+        app:layout_constraintRight_toRightOf="@id/btn_register"
+        app:layout_constraintTop_toTopOf="@id/btn_register" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:elevation="10dp"
+        android:text="@string/txt_register"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        app:cornerRadius="5dp"
+        app:elevation="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/textInput_password"
+        app:layout_constraintRight_toRightOf="@id/textInput_password"
+        app:layout_constraintTop_toBottomOf="@id/textInput_password" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintLeft_toLeftOf="@id/btn_register"
+        app:layout_constraintRight_toRightOf="@id/btn_register"
+        app:layout_constraintTop_toBottomOf="@id/btn_register" />
+
+    <TextView
+        android:id="@+id/tv_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_with"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/divider"
+        app:layout_constraintRight_toRightOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <LinearLayout
+        android:id="@+id/linear_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/tv_reg"
+        app:layout_constraintRight_toRightOf="@id/tv_reg"
+        app:layout_constraintTop_toBottomOf="@id/tv_reg">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/register_with_google_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:src="@drawable/google_icon"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/register_with_facebook_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:src="@drawable/facebook_icon"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/register_with_twitter_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/twitter_icon"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/linear_1"
+        app:layout_constraintRight_toRightOf="@id/linear_1"
+        app:layout_constraintTop_toBottomOf="@id/linear_1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:text="@string/already_have_an_account" />
+
+        <TextView
+            android:id="@+id/login_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:text="@string/login"
+            android:textColor="@color/blue_800"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

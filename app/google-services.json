@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1055957741219",
+    "project_id": "ellipcom-online-shop",
+    "storage_bucket": "ellipcom-online-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055957741219:android:4565d13da756a5c2835916",
+        "android_client_info": {
+          "package_name": "com.ellipcom.ellipcom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055957741219-4vl71bi6j39397h03qimug3ac7t1itlv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYyCzF5kUQQmMSsBslwKu9172uHP4DsbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055957741219-4vl71bi6j39397h03qimug3ac7t1itlv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

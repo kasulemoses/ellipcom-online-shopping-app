@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.ellipcom.ellipcom.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_categories"
+        android:name="com.ellipcom.ellipcom.ui.navigationCategories.BottomNavigationCategoryFragment"
+        android:label="@string/Product_categories"
+        tools:layout="@layout/fragment_main_category">
+        <action
+            android:id="@+id/action_navigation_categories_to_householdSubCategoriesFragment"
+            app:destination="@id/householdSubCategoriesFragment"
+            app:popUpTo="@id/navigation_categories"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_categories_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/navigation_categories"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_categories_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/navigation_categories"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_categories_to_constructionSubCategoriesFragment"
+            app:destination="@id/constructionSubCategoriesFragment"
+            app:popUpTo="@id/navigation_categories"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_categories_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/navigation_categories"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.ellipcom.ellipcom.ui.navigationCart.BottomNavigationCartFragment"
+        android:label="@string/shopping_cart"
+        tools:layout="@layout/fragment_bottom_navigation_cart">
+        <argument
+            android:name="pdtIdFromDetail"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_cart_to_newCustomerAddressFragment"
+            app:destination="@id/newCustomerAddressFragment" />
+        <action
+            android:id="@+id/action_navigation_cart_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_navigation_cart_to_deliveryFragment"
+            app:destination="@id/deliveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomNavigationProfileFragment"
+        android:name="com.ellipcom.ellipcom.ui.navigationProfile.BottomNavigationProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/bottom_navigation_profile_fragment" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.ellipcom.ellipcom.ui.registrationAndLogin.RegistrationFragment"
+        android:label="registration_fragment"
+        tools:layout="@layout/registration_fragment">
+        <action
+            android:id="@+id/action_registrationFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_registrationFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ellipcom.ellipcom.ui.registrationAndLogin.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ellipcom.ellipcom.ui.startScreens.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.ellipcom.ellipcom.ui.startScreens.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="com.ellipcom.ellipcom.ui.productDetailFragment.DetailProductFragment"
+        android:label="detail_product_fragment"
+        tools:layout="@layout/detail_product_fragment">
+        <argument
+            android:name="productDetails"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailProductFragment_to_navigation_cart"
+            app:destination="@id/navigation_cart" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCustomerAddressFragment"
+        android:name="com.ellipcom.ellipcom.ui.customerAddresses.NewCustomerAddressFragment"
+        android:label="new_customer_address_fragment"
+        tools:layout="@layout/new_customer_address_fragment">
+        <action
+            android:id="@+id/action_newCustomerAddressFragment_to_addressNoteBookFragment"
+            app:destination="@id/addressNoteBookFragment"
+            app:popUpTo="@id/newCustomerAddressFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressNoteBookFragment"
+        android:name="com.ellipcom.ellipcom.ui.customerAddresses.AddressNoteBookFragment"
+        android:label="address_note_book_fragment"
+        tools:layout="@layout/address_note_book_fragment">
+        <action
+            android:id="@+id/action_addressNoteBookFragment_to_newCustomerAddressFragment"
+            app:destination="@id/newCustomerAddressFragment" />
+        <action
+            android:id="@+id/action_addressNoteBookFragment_to_deliveryFragment"
+            app:destination="@id/deliveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deliveryFragment"
+        android:name="com.ellipcom.ellipcom.ui.delivery.DeliveryFragment"
+        android:label="delivery_fragment"
+        tools:layout="@layout/delivery_fragment">
+        <argument
+            android:name="delivery_adress_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_confirmOrderFragment"
+            app:destination="@id/confirmOrderFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_addressNoteBookFragment"
+            app:destination="@id/addressNoteBookFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmOrderFragment"
+        android:name="com.ellipcom.ellipcom.ui.comfirmOrder.ConfirmOrderFragment"
+        android:label="confirm_order_fragment"
+        tools:layout="@layout/confirm_order_fragment" />
+    <fragment
+        android:id="@+id/householdSubCategoriesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.HouseholdSubCategoriesFragment"
+        android:label="fragment_household_sub_categories"
+        tools:layout="@layout/fragment_household_sub_categories">
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@id/householdSubCategoriesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_televisionFragment"
+            app:destination="@id/televisionFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_homeTheatresFragment"
+            app:destination="@id/homeTheatresFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_projectorsFragment"
+            app:destination="@id/projectorsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_portableAudioFragment"
+            app:destination="@id/portableAudioFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_portableAudioFragment2"
+            app:destination="@id/portableAudioFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_tabletsFragment"
+            app:destination="@id/tabletsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_smartPhonesFragment"
+            app:destination="@id/smartPhonesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_featuredPhonesFragment"
+            app:destination="@id/featuredPhonesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_phoneChargersFragment"
+            app:destination="@id/phoneChargersFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_laptopsFragment"
+            app:destination="@id/laptopsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_printersAndScannersFragment"
+            app:destination="@id/printersAndScannersFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_computerAccessoriesFragment"
+            app:destination="@id/computerAccessoriesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_monitorsAndCpuFragment"
+            app:destination="@id/monitorsAndCpuFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment"
+            app:destination="@id/smallElectricAppliancesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_microwavesFragment"
+            app:destination="@id/microwavesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_refrigeratorsFragment"
+            app:destination="@id/refrigeratorsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_cookersFragment"
+            app:destination="@id/cookersFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_utensilsFragment"
+            app:destination="@id/utensilsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_chairsFragment"
+            app:destination="@id/chairsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_doorsFragment"
+            app:destination="@id/doorsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_bedsFragment"
+            app:destination="@id/bedsFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_sofasFragment"
+            app:destination="@id/sofasFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_tablesFragment"
+            app:destination="@id/tablesFragment" />
+        <action
+            android:id="@+id/action_householdSubCategoriesFragment_to_sideboardsFragment"
+            app:destination="@id/sideboardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/educationSubCategoryFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.EducationSubCategoryFragment"
+        android:label="fragment_education_sub_category"
+        tools:layout="@layout/fragment_education_sub_category">
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@id/educationSubCategoryFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_physicsFragment"
+            app:destination="@id/physicsFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_chemistryFragment"
+            app:destination="@id/chemistryFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_computerStudiesFragment"
+            app:destination="@id/computerStudiesFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_agricultureFragment"
+            app:destination="@id/agricultureFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_biologyFragment"
+            app:destination="@id/biologyFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_mathematicsFragment"
+            app:destination="@id/mathematicsFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_literatureFragment"
+            app:destination="@id/literatureFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_geographyFragment"
+            app:destination="@id/geographyFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_economicsFragment"
+            app:destination="@id/economicsFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_languageSubjectsFragment"
+            app:destination="@id/languageSubjectsFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_christianReligiousEducationFragment"
+            app:destination="@id/christianReligiousEducationFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_primaryMathFragment"
+            app:destination="@id/primaryMathFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_onlineTutoringFragment"
+            app:destination="@id/onlineTutoringFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_primarySstFragment"
+            app:destination="@id/primarySstFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_homeTutoringFragment"
+            app:destination="@id/homeTutoringFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_primaryScienceFragment"
+            app:destination="@id/primaryScienceFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_facilitationFragment"
+            app:destination="@id/facilitationFragment" />
+        <action
+            android:id="@+id/action_educationSubCategoryFragment_to_primaryEnglishFragment"
+            app:destination="@id/primaryEnglishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/constructionSubCategoriesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.ConstructionSubCategoriesFragment"
+        android:label="fragment_construction_sub_categories"
+        tools:layout="@layout/fragment_construction_sub_categories">
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@id/constructionSubCategoriesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_helmetsFragment"
+            app:destination="@id/helmetsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_safetyBootsFragment"
+            app:destination="@id/safetyBootsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_eyeShieldsFragment"
+            app:destination="@id/eyeShieldsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_safetyBeltdFragment"
+            app:destination="@id/safetyBeltdFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_earBadFragment"
+            app:destination="@id/earBadFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_reflectorJacketsFragment"
+            app:destination="@id/reflectorJacketsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_gamBootsFragment"
+            app:destination="@id/gamBootsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_overallFragment"
+            app:destination="@id/overallFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_constructionFloatsFragment"
+            app:destination="@id/constructionFloatsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_hoesFragment"
+            app:destination="@id/hoesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_constructionBobsAndLevelsFragment"
+            app:destination="@id/constructionBobsAndLevelsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_spadesFragment"
+            app:destination="@id/spadesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_wheelBarrowsFragment"
+            app:destination="@id/wheelBarrowsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_constructionSteelAndWoodsFragment"
+            app:destination="@id/constructionSteelAndWoodsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_trowelsFragment"
+            app:destination="@id/trowelsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_cementFragment"
+            app:destination="@id/cementFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_blocksAndBricksFragment"
+            app:destination="@id/blocksAndBricksFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_glassesFragment"
+            app:destination="@id/glassesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_limeFragment"
+            app:destination="@id/limeFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_wallCarpetsFragment"
+            app:destination="@id/wallCarpetsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_waterProofingMaterialFragment"
+            app:destination="@id/waterProofingMaterialFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_drainagePipesAndConduitsFragment"
+            app:destination="@id/drainagePipesAndConduitsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_sinkAndWaterBasinsFragment"
+            app:destination="@id/sinkAndWaterBasinsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_junctionsAndBendsFragment"
+            app:destination="@id/junctionsAndBendsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_tilesFragment"
+            app:destination="@id/tilesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_showersFragment"
+            app:destination="@id/showersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_waterHaetersFragment"
+            app:destination="@id/waterHaetersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_electricalConduitsFragment"
+            app:destination="@id/electricalConduitsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_bulbsAndTubesFragment"
+            app:destination="@id/bulbsAndTubesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_electricalWiresFragment"
+            app:destination="@id/electricalWiresFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_socketsFragment"
+            app:destination="@id/socketsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_cuttingBladesFragment"
+            app:destination="@id/cuttingBladesFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_grindersFragment"
+            app:destination="@id/grindersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_drillersFragment"
+            app:destination="@id/drillersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_electriciansFragment"
+            app:destination="@id/electriciansFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_civilengineersFragment"
+            app:destination="@id/civilengineersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_plumbersFragment"
+            app:destination="@id/plumbersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_designersAndArchitectsFragment"
+            app:destination="@id/designersAndArchitectsFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_projectMangersFragment"
+            app:destination="@id/projectMangersFragment" />
+        <action
+            android:id="@+id/action_constructionSubCategoriesFragment_to_surveyorsFragment"
+            app:destination="@id/surveyorsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/healthCareSubCategoriesFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.HealthCareSubCategoriesFragment"
+        android:label="fragment_health_care_sub_categories"
+        tools:layout="@layout/fragment_health_care_sub_categories">
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@id/healthCareSubCategoriesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_painKillersFragment"
+            app:destination="@id/painKillersFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_vitaminsAndFoodSupplementsFragment"
+            app:destination="@id/vitaminsAndFoodSupplementsFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_antibioticsFragment"
+            app:destination="@id/antibioticsFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_babyEquipmentsFragment"
+            app:destination="@id/babyEquipmentsFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_contraceptivesFragment"
+            app:destination="@id/contraceptivesFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment"
+            app:destination="@id/pampersAndDiapersFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_reproductiveHealthFragment"
+            app:destination="@id/reproductiveHealthFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_herbalsAndSyrupsFragment"
+            app:destination="@id/herbalsAndSyrupsFragment" />
+        <action
+            android:id="@+id/action_healthCareSubCategoriesFragment_to_medicalServicesFragment"
+            app:destination="@id/medicalServicesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodAndDrinksSubCategoriesFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.FoodAndDrinksSubCategoriesFragment"
+        android:label="fragment_food_and_drinks_sub_categories"
+        tools:layout="@layout/fragment_food_and_drinks_sub_categories">
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_navigation_categories"
+            app:destination="@id/navigation_categories"
+            app:popUpTo="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_riceFragment"
+            app:destination="@id/riceFragment" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_cookingOilsFragment"
+            app:destination="@id/cookingOilsFragment" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_flourFragment"
+            app:destination="@id/flourFragment" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_sugarFragment"
+            app:destination="@id/sugarFragment" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_hardDrinksFragment"
+            app:destination="@id/hardDrinksFragment" />
+        <action
+            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_softDrinksFragment"
+            app:destination="@id/softDrinksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/televisionFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.electronics.television.TelevisionFragment"
+        android:label="fragment_television"
+        tools:layout="@layout/fragment_television" />
+    <fragment
+        android:id="@+id/homeTheatresFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.electronics.homeTheatres.HomeTheatresFragment"
+        android:label="fragment_home_theatres"
+        tools:layout="@layout/fragment_home_theatres" />
+    <fragment
+        android:id="@+id/projectorsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.electronics.projectors.ProjectorsFragment"
+        android:label="fragment_projectors"
+        tools:layout="@layout/fragment_projectors" />
+    <fragment
+        android:id="@+id/portableAudioFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.electronics.portableAudio.PortableAudioFragment"
+        android:label="fragment_portable_audio"
+        tools:layout="@layout/fragment_portable_audio" />
+    <fragment
+        android:id="@+id/smartPhonesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.phonesAndTablets.smartPhones.SmartPhonesFragment"
+        android:label="fragment_smart_phones"
+        tools:layout="@layout/fragment_smart_phones" />
+    <fragment
+        android:id="@+id/tabletsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.phonesAndTablets.tablets.TabletsFragment"
+        android:label="fragment_tablets"
+        tools:layout="@layout/fragment_tablets" />
+    <fragment
+        android:id="@+id/featuredPhonesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.phonesAndTablets.featuredPhones.FeaturedPhonesFragment"
+        android:label="fragment_featured_phones"
+        tools:layout="@layout/fragment_featured_phones" />
+    <fragment
+        android:id="@+id/phoneChargersFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.phonesAndTablets.phoneChargers.PhoneChargersFragment"
+        android:label="fragment_phone_chargers"
+        tools:layout="@layout/fragment_phone_chargers" />
+    <fragment
+        android:id="@+id/laptopsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.computing.laptops.LaptopsFragment"
+        android:label="fragment_laptops"
+        tools:layout="@layout/fragment_laptops" />
+    <fragment
+        android:id="@+id/printersAndScannersFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.computing.printersAndScanners.PrintersAndScannersFragment"
+        android:label="fragment_printers_and_scanners"
+        tools:layout="@layout/fragment_printers_and_scanners" />
+    <fragment
+        android:id="@+id/computerAccessoriesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.computing.computerAccessories.ComputerAccessoriesFragment"
+        android:label="fragment_computer_accessories"
+        tools:layout="@layout/fragment_computer_accessories" />
+    <fragment
+        android:id="@+id/monitorsAndCpuFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.computing.monitorsAndCPU.MonitorsAndCpuFragment"
+        android:label="fragment_monitors_and_cpu"
+        tools:layout="@layout/fragment_monitors_and_cpu" />
+    <fragment
+        android:id="@+id/refrigeratorsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.homeAndOffice.refrigerators.RefrigeratorsFragment"
+        android:label="fragment_refrigerators"
+        tools:layout="@layout/fragment_refrigerators" />
+    <fragment
+        android:id="@+id/cookersFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.homeAndOffice.cookers.CookersFragment"
+        android:label="fragment_cookers"
+        tools:layout="@layout/fragment_cookers" />
+    <fragment
+        android:id="@+id/microwavesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.homeAndOffice.microwaves.MicrowavesFragment"
+        android:label="fragment_microwaves"
+        tools:layout="@layout/fragment_microwaves" />
+    <fragment
+        android:id="@+id/utensilsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.homeAndOffice.utensils.UtensilsFragment"
+        android:label="fragment_utensils"
+        tools:layout="@layout/fragment_utensils" />
+    <fragment
+        android:id="@+id/smallElectricAppliancesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.homeAndOffice.smallAppliances.SmallElectricAppliancesFragment"
+        android:label="fragment_small_electric_appliances"
+        tools:layout="@layout/fragment_small_electric_appliances" />
+    <fragment
+        android:id="@+id/sofasFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.sofas.SofasFragment"
+        android:label="fragment_sofas"
+        tools:layout="@layout/fragment_sofas" />
+    <fragment
+        android:id="@+id/bedsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.beds.BedsFragment"
+        android:label="fragment_beds"
+        tools:layout="@layout/fragment_beds" />
+    <fragment
+        android:id="@+id/tablesFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.tables.TablesFragment"
+        android:label="fragment_tables"
+        tools:layout="@layout/fragment_tables" />
+    <fragment
+        android:id="@+id/chairsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.chairs.ChairsFragment"
+        android:label="fragment_chairs"
+        tools:layout="@layout/fragment_chairs" />
+    <fragment
+        android:id="@+id/sideboardsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.sideboards.SideboardsFragment"
+        android:label="fragment_sideboards"
+        tools:layout="@layout/fragment_sideboards" />
+    <fragment
+        android:id="@+id/doorsFragment"
+        android:name="com.ellipcom.ellipcom.ui.houshold.furniture.doors.DoorsFragment"
+        android:label="fragment_doors"
+        tools:layout="@layout/fragment_doors" />
+    <fragment
+        android:id="@+id/physicsFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.physics.PhysicsFragment"
+        android:label="fragment_physics"
+        tools:layout="@layout/fragment_physics" >
+        <action
+            android:id="@+id/action_physicsFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/physicsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/chemistryFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.chemistry.ChemistryFragment"
+        android:label="fragment_chemistry"
+        tools:layout="@layout/fragment_chemistry" >
+        <action
+            android:id="@+id/action_chemistryFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/chemistryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mathematicsFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.math.MathematicsFragment"
+        android:label="fragment_mathematics"
+        tools:layout="@layout/fragment_mathematics" >
+        <action
+            android:id="@+id/action_mathematicsFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/mathematicsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/biologyFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.biology.BiologyFragment"
+        android:label="fragment_biology"
+        tools:layout="@layout/fragment_biology" >
+        <action
+            android:id="@+id/action_biologyFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/biologyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/agricultureFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.agriculture.AgricultureFragment"
+        android:label="fragment_agriculture"
+        tools:layout="@layout/fragment_agriculture" >
+        <action
+            android:id="@+id/action_agricultureFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/agricultureFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/computerStudiesFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.science.computerStudies.ComputerStudiesFragment"
+        android:label="fragment_computer_studies"
+        tools:layout="@layout/fragment_computer_studies" >
+        <action
+            android:id="@+id/action_computerStudiesFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/computerStudiesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/historyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/geographyFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.geography.GeographyFragment"
+        android:label="fragment_geography"
+        tools:layout="@layout/fragment_geography" >
+        <action
+            android:id="@+id/action_geographyFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/geographyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/economicsFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.economics.EconomicsFragment"
+        android:label="fragment_economics"
+        tools:layout="@layout/fragment_economics" >
+        <action
+            android:id="@+id/action_economicsFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/economicsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/christianReligiousEducationFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.christianReligiousEducation.ChristianReligiousEducationFragment"
+        android:label="fragment_christian_religious_education"
+        tools:layout="@layout/fragment_christian_religious_education" >
+        <action
+            android:id="@+id/action_christianReligiousEducationFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/christianReligiousEducationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/literatureFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.literature.LiteratureFragment"
+        android:label="fragment_literature"
+        tools:layout="@layout/fragment_literature" >
+        <action
+            android:id="@+id/action_literatureFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/literatureFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/languageSubjectsFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.arts.languageStudies.LanguageSubjectsFragment"
+        android:label="fragment_language_subjects"
+        tools:layout="@layout/fragment_language_subjects" >
+        <action
+            android:id="@+id/action_languageSubjectsFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/languageSubjectsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/primarySstFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.primary.sst.PrimarySstFragment"
+        android:label="fragment_primary_sst"
+        tools:layout="@layout/fragment_primary_sst" >
+        <action
+            android:id="@+id/action_primarySstFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/primarySstFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/primaryScienceFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.primary.science.PrimaryScienceFragment"
+        android:label="fragment_primary_science"
+        tools:layout="@layout/fragment_primary_science" >
+        <action
+            android:id="@+id/action_primaryScienceFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/primaryScienceFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/primaryMathFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.primary.math.PrimaryMathFragment"
+        android:label="fragment_primary_math"
+        tools:layout="@layout/fragment_primary_math" >
+        <action
+            android:id="@+id/action_primaryMathFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/primaryMathFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/primaryEnglishFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.primary.english.PrimaryEnglishFragment"
+        android:label="fragment_primary_english"
+        tools:layout="@layout/fragment_primary_english" >
+        <action
+            android:id="@+id/action_primaryEnglishFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/primaryEnglishFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onlineTutoringFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.educationServices.onlineTutoring.OnlineTutoringFragment"
+        android:label="fragment_online_tutoring"
+        tools:layout="@layout/fragment_online_tutoring" >
+        <action
+            android:id="@+id/action_onlineTutoringFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/onlineTutoringFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeTutoringFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.educationServices.homeTutoring.HomeTutoringFragment"
+        android:label="fragment_home_tutoring"
+        tools:layout="@layout/fragment_home_tutoring" >
+        <action
+            android:id="@+id/action_homeTutoringFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/homeTutoringFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/facilitationFragment"
+        android:name="com.ellipcom.ellipcom.ui.education.educationServices.facilitation.FacilitationFragment"
+        android:label="fragment_facilitation"
+        tools:layout="@layout/fragment_facilitation" >
+        <action
+            android:id="@+id/action_facilitationFragment_to_educationSubCategoryFragment"
+            app:destination="@id/educationSubCategoryFragment"
+            app:popUpTo="@id/facilitationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/riceFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.food.rice.RiceFragment"
+        android:label="fragment_rice"
+        tools:layout="@layout/fragment_rice" >
+        <action
+            android:id="@+id/action_riceFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/riceFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/flourFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.food.flour.FlourFragment"
+        android:label="fragment_flour"
+        tools:layout="@layout/fragment_flour" >
+        <action
+            android:id="@+id/action_flourFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/flourFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/sugarFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.food.sugar.SugarFragment"
+        android:label="fragment_sugar"
+        tools:layout="@layout/fragment_sugar" >
+        <action
+            android:id="@+id/action_sugarFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/sugarFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cookingOilsFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.food.cookingOil.CookingOilsFragment"
+        android:label="fragment_cooking_oils"
+        tools:layout="@layout/fragment_cooking_oils" >
+        <action
+            android:id="@+id/action_cookingOilsFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/cookingOilsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/softDrinksFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.drinks.softDrinks.SoftDrinksFragment"
+        android:label="fragment_soft_drinks"
+        tools:layout="@layout/fragment_soft_drinks" >
+        <action
+            android:id="@+id/action_softDrinksFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/softDrinksFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/hardDrinksFragment"
+        android:name="com.ellipcom.ellipcom.ui.foodAndDrinks.drinks.hardDrinks.HardDrinksFragment"
+        android:label="fragment_hard_drinks"
+        tools:layout="@layout/fragment_hard_drinks" >
+        <action
+            android:id="@+id/action_hardDrinksFragment_to_foodAndDrinksSubCategoriesFragment"
+            app:destination="@id/foodAndDrinksSubCategoriesFragment"
+            app:popUpTo="@id/hardDrinksFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/helmetsFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.HelmetsFragment"-->
+<!--        android:label="fragment_helmets"-->
+<!--        tools:layout="@layout/fragment_helmets" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/eyeShieldsFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.EyeShieldsFragment"-->
+<!--        android:label="fragment_eye_shields"-->
+<!--        tools:layout="@layout/fragment_eye_shields" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/reflectorJacketsFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.ReflectorJacketsFragment"-->
+<!--        android:label="fragment_reflector_jackets"-->
+<!--        tools:layout="@layout/fragment_reflector_jackets" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/safetyBeltdFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.SafetyBeltdFragment"-->
+<!--        android:label="fragment_safety_beltd"-->
+<!--        tools:layout="@layout/fragment_safety_beltd" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/safetyBootsFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.SafetyBootsFragment"-->
+<!--        android:label="fragment_safety_boots"-->
+<!--        tools:layout="@layout/fragment_safety_boots" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/gamBootsFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.GamBootsFragment"-->
+<!--        android:label="fragment_gam_boots"-->
+<!--        tools:layout="@layout/fragment_gam_boots" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/overallFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.OverallFragment"-->
+<!--        android:label="fragment_overall"-->
+<!--        tools:layout="@layout/fragment_overall" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/earBadFragment"-->
+<!--        android:name="com.ellipcom.ellipcom.EarBadFragment"-->
+<!--        android:label="fragment_ear_bad"-->
+<!--        tools:layout="@layout/fragment_ear_bad" />-->
+    <fragment
+        android:id="@+id/spadesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.spades.SpadesFragment"
+        android:label="fragment_spades"
+        tools:layout="@layout/fragment_spades" />
+    <fragment
+        android:id="@+id/hoesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.hoes.HoesFragment"
+        android:label="fragment_hoes"
+        tools:layout="@layout/fragment_hoes" />
+    <fragment
+        android:id="@+id/trowelsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.trowels.TrowelsFragment"
+        android:label="fragment_trowels"
+        tools:layout="@layout/fragment_trowels" />
+    <fragment
+        android:id="@+id/wheelBarrowsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.wheelBarrows.WheelBarrowsFragment"
+        android:label="fragment_wheel_barrows"
+        tools:layout="@layout/fragment_wheel_barrows" />
+    <fragment
+        android:id="@+id/constructionBobsAndLevelsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.bobsAndLevels.ConstructionBobsAndLevelsFragment"
+        android:label="fragment_construction_bobs_and_levels"
+        tools:layout="@layout/fragment_construction_bobs_and_levels" />
+    <fragment
+        android:id="@+id/constructionFloatsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.floats.ConstructionFloatsFragment"
+        android:label="fragment_construction_floats"
+        tools:layout="@layout/fragment_construction_floats" />
+    <fragment
+        android:id="@+id/constructionSteelAndWoodsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.buildingTools.steelAndWoods.ConstructionSteelAndWoodsFragment"
+        android:label="fragment_construction_steel_and_woods"
+        tools:layout="@layout/fragment_construction_steel_and_woods" />
+    <fragment
+        android:id="@+id/cementFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.cement.CementFragment"
+        android:label="fragment_cement"
+        tools:layout="@layout/fragment_cement" />
+    <fragment
+        android:id="@+id/limeFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.lime.LimeFragment"
+        android:label="fragment_lime"
+        tools:layout="@layout/fragment_lime" />
+    <fragment
+        android:id="@+id/blocksAndBricksFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.blocksAndBricks.BlocksAndBricksFragment"
+        android:label="fragment_blocks_and_bricks"
+        tools:layout="@layout/fragment_blocks_and_bricks" />
+    <fragment
+        android:id="@+id/waterProofingMaterialFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.waterProofing.WaterProofingMaterialFragment"
+        android:label="fragment_water_proofing_material"
+        tools:layout="@layout/fragment_water_proofing_material" />
+    <fragment
+        android:id="@+id/wallCarpetsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.wallCarpets.WallCarpetsFragment"
+        android:label="fragment_wall_carpets"
+        tools:layout="@layout/fragment_wall_carpets" />
+    <fragment
+        android:id="@+id/glassesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.constructionMaterials.glasses.GlassesFragment"
+        android:label="fragment_glasses"
+        tools:layout="@layout/fragment_glasses" />
+    <fragment
+        android:id="@+id/tilesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.tiles.TilesFragment"
+        android:label="fragment_tiles"
+        tools:layout="@layout/fragment_tiles" />
+    <fragment
+        android:id="@+id/sinkAndWaterBasinsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.sinksAndWaterBasins.SinkAndWaterBasinsFragment"
+        android:label="fragment_sink_and_water_basins"
+        tools:layout="@layout/fragment_sink_and_water_basins" />
+    <fragment
+        android:id="@+id/waterHaetersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.waterHeaters.WaterHaetersFragment"
+        android:label="fragment_water_haeters"
+        tools:layout="@layout/fragment_water_haeters" />
+    <fragment
+        android:id="@+id/showersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.showers.ShowersFragment"
+        android:label="fragment_showers"
+        tools:layout="@layout/fragment_showers" />
+    <fragment
+        android:id="@+id/junctionsAndBendsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.junctionAndBends.JunctionsAndBendsFragment"
+        android:label="fragment_junctions_and_bends"
+        tools:layout="@layout/fragment_junctions_and_bends" />
+    <fragment
+        android:id="@+id/drainagePipesAndConduitsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.plumbingMaterials.drainagePipesAndConduits.DrainagePipesAndConduitsFragment"
+        android:label="fragment_drainage_pipes_and_conduits"
+        tools:layout="@layout/fragment_drainage_pipes_and_conduits" />
+    <fragment
+        android:id="@+id/socketsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.electricalMaterials.sockets.SocketsFragment"
+        android:label="fragment_sockets"
+        tools:layout="@layout/fragment_sockets" />
+    <fragment
+        android:id="@+id/electricalWiresFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.electricalMaterials.elecctricalWires.ElectricalWiresFragment"
+        android:label="fragment_electrical_wires"
+        tools:layout="@layout/fragment_electrical_wires" />
+    <fragment
+        android:id="@+id/bulbsAndTubesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.electricalMaterials.bulbsAndTubes.BulbsAndTubesFragment"
+        android:label="fragment_bulbs_and_tubes"
+        tools:layout="@layout/fragment_bulbs_and_tubes" />
+    <fragment
+        android:id="@+id/electricalConduitsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.electricalMaterials.electricalConduits.ElectricalConduitsFragment"
+        android:label="fragment_electrical_conduits"
+        tools:layout="@layout/fragment_electrical_conduits" />
+    <fragment
+        android:id="@+id/grindersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.carpentryTools.grinders.GrindersFragment"
+        android:label="fragment_grinders"
+        tools:layout="@layout/fragment_grinders" />
+    <fragment
+        android:id="@+id/cuttingBladesFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.carpentryTools.cuttingBlades.CuttingBladesFragment"
+        android:label="fragment_cutting_blades"
+        tools:layout="@layout/fragment_cutting_blades" />
+    <fragment
+        android:id="@+id/drillersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.carpentryTools.drillers.DrillersFragment"
+        android:label="fragment_drillers"
+        tools:layout="@layout/fragment_drillers" />
+    <fragment
+        android:id="@+id/plumbersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.plumbers.PlumbersFragment"
+        android:label="fragment_plumbers"
+        tools:layout="@layout/fragment_plumbers" />
+    <fragment
+        android:id="@+id/electriciansFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.electricians.ElectriciansFragment"
+        android:label="fragment_electricians"
+        tools:layout="@layout/fragment_electricians" />
+    <fragment
+        android:id="@+id/projectMangersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.projectManagers.ProjectMangersFragment"
+        android:label="fragment_project_mangers"
+        tools:layout="@layout/fragment_project_mangers" />
+    <fragment
+        android:id="@+id/surveyorsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.surveyors.SurveyorsFragment"
+        android:label="fragment_surveyors"
+        tools:layout="@layout/fragment_surveyors" />
+    <fragment
+        android:id="@+id/civilengineersFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.civilEngineers.CivilEngineersFragment"
+        android:label="fragment_civilengineers"
+        tools:layout="@layout/fragment_civilengineers" />
+    <fragment
+        android:id="@+id/designersAndArchitectsFragment"
+        android:name="com.ellipcom.ellipcom.ui.construction.TechnicalServices.designersAndArchitects.DesignersAndArchitectsFragment"
+        android:label="fragment_designers_and_architects"
+        tools:layout="@layout/fragment_designers_and_architects" />
+    <fragment
+        android:id="@+id/herbalsAndSyrupsFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.herbalsAndSyrups.HerbalsAndSyrupsFragment"
+        android:label="fragment_herbals_and_syrups"
+        tools:layout="@layout/fragment_herbals_and_syrups" >
+        <action
+            android:id="@+id/action_herbalsAndSyrupsFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/herbalsAndSyrupsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/antibioticsFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.antibiotics.AntibioticsFragment"
+        android:label="fragment_antibiotics"
+        tools:layout="@layout/fragment_antibiotics" >
+        <action
+            android:id="@+id/action_antibioticsFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/antibioticsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/vitaminsAndFoodSupplementsFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.vitaminsAndSupplements.VitaminsAndFoodSupplementsFragment"
+        android:label="fragment_vitamins_and_food_supplements"
+        tools:layout="@layout/fragment_vitamins_and_food_supplements" >
+        <action
+            android:id="@+id/action_vitaminsAndFoodSupplementsFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/vitaminsAndFoodSupplementsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/painKillersFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.painKillers.PainKillersFragment"
+        android:label="fragment_pain_killers"
+        tools:layout="@layout/fragment_pain_killers" >
+        <action
+            android:id="@+id/action_painKillersFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/painKillersFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/pampersAndDiapersFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.pampersAndDiapers.PampersAndDiapersFragment"
+        android:label="fragment_pampers_and_diapers"
+        tools:layout="@layout/fragment_pampers_and_diapers" >
+        <action
+            android:id="@+id/action_pampersAndDiapersFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/pampersAndDiapersFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/babyEquipmentsFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.babyEquipments.BabyEquipmentsFragment"
+        android:label="fragment_baby_equipments"
+        tools:layout="@layout/fragment_baby_equipments" >
+        <action
+            android:id="@+id/action_babyEquipmentsFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/babyEquipmentsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/contraceptivesFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.contraceptives.ContraceptivesFragment"
+        android:label="fragment_contraceptives"
+        tools:layout="@layout/fragment_contraceptives" >
+        <action
+            android:id="@+id/action_contraceptivesFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/contraceptivesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/reproductiveHealthFragment"
+        android:name="com.ellipcom.ellipcom.ui.medical.reproductiveHealth.ReproductiveHealthFragment"
+        android:label="fragment_reproductive_health"
+        tools:layout="@layout/fragment_reproductive_health" >
+        <action
+            android:id="@+id/action_reproductiveHealthFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/reproductiveHealthFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicalServicesFragment"
+        android:name="com.ellipcom.ellipcom.MedicalServicesFragment"
+        android:label="fragment_medical_services"
+        tools:layout="@layout/fragment_medical_services" >
+        <action
+            android:id="@+id/action_medicalServicesFragment_to_healthCareSubCategoriesFragment"
+            app:destination="@id/healthCareSubCategoriesFragment"
+            app:popUpTo="@id/medicalServicesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
