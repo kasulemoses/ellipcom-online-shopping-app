@@ -125,6 +125,7 @@ class HomeFragment : Fragment(), OnProductClickListener {
         // If you want auto slide, turn this feature on.
         carousel.autoPlay = true
         carousel.autoPlayDelay = 3000 // Milliseconds
+        carousel.showNavigationButtons =false
 
         carousel.touchToPause = true
 
