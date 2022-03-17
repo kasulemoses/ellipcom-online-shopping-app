@@ -368,30 +368,7 @@
             app:destination="@id/navigation_categories"
             app:popUpTo="@id/constructionSubCategoriesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_helmetsFragment"
-            app:destination="@id/helmetsFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_safetyBootsFragment"
-            app:destination="@id/safetyBootsFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_eyeShieldsFragment"
-            app:destination="@id/eyeShieldsFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_safetyBeltdFragment"
-            app:destination="@id/safetyBeltdFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_earBadFragment"
-            app:destination="@id/earBadFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_reflectorJacketsFragment"
-            app:destination="@id/reflectorJacketsFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_gamBootsFragment"
-            app:destination="@id/gamBootsFragment" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_overallFragment"
-            app:destination="@id/overallFragment" />
+
         <action
             android:id="@+id/action_constructionSubCategoriesFragment_to_constructionFloatsFragment"
             app:destination="@id/constructionFloatsFragment" />

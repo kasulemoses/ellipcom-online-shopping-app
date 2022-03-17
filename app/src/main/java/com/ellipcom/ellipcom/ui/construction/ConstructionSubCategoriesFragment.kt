@@ -364,28 +364,28 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForSafetyGear() {
 
         safetyGearHelmet.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_helmetsFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_helmetsFragment)
         }
         safetyGearEyeShield.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_eyeShieldsFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_eyeShieldsFragment)
         }
         safetyGearReflectorJackets.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_reflectorJacketsFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_reflectorJacketsFragment)
         }
         safetyGearBelts.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBeltdFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBeltdFragment)
         }
         safetyGearSafetyBoots.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBootsFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBootsFragment)
         }
         safetyGearGamBoots.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_gamBootsFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_gamBootsFragment)
         }
         safetyGearOverall.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_overallFragment)
+            //findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_overallFragment)
         }
         safetyGearEarBad.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_earBadFragment)
+           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_earBadFragment)
         }
 
     }

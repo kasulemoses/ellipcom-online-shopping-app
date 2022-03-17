@@ -74,7 +74,7 @@ class LoginFragment : Fragment() {
         bindingViews()
 
         auth = FirebaseAuth.getInstance()
-        createRequest()
+        //createRequest()
         return binding.root
     }
 
