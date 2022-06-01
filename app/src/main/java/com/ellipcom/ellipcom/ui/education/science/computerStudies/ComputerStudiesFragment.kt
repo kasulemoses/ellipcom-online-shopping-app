@@ -42,7 +42,6 @@ class ComputerStudiesFragment : Fragment() {
         binding.computerStudiesRV.adapter = productAdapter
 
         binding.computerStudiesLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_computerStudiesFragment_to_educationSubCategoryFragment)
         }
         attachingDataToRv()
 

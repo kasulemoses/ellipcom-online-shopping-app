@@ -43,7 +43,7 @@ class VitaminsAndFoodSupplementsFragment : Fragment() {
         binding.vitaminAndSupplementsRV.adapter = productAdapter
 
         binding.vitaminAndSupplementsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_vitaminsAndFoodSupplementsFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

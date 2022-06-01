@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentEducationSubCategoryBinding
+import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.google.android.material.card.MaterialCardView
 
 class EducationSubCategoryFragment : Fragment() {
@@ -17,6 +19,9 @@ class EducationSubCategoryFragment : Fragment() {
     //view binding
     private var _binding: FragmentEducationSubCategoryBinding? = null
     private val binding get() = _binding!!
+
+    //shared view model
+    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
 
     //views
     private lateinit var cardScience: MaterialCardView
@@ -74,6 +79,7 @@ class EducationSubCategoryFragment : Fragment() {
     private lateinit var homeTutoring: TextView
     private lateinit var facilitation: TextView
 
+    private var educationViewId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -154,7 +160,7 @@ class EducationSubCategoryFragment : Fragment() {
 
 
         educationSubCatLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_navigation_categories)
+
         }
         //science
         cardScience.setOnClickListener {
@@ -243,111 +249,133 @@ class EducationSubCategoryFragment : Fragment() {
     private fun clickListenersForEducationServices() {
 
         onlineTutoring.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_onlineTutoringFragment)
+            educationViewId = "onlineTutoring"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         homeTutoring.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_homeTutoringFragment)
+            educationViewId = "homeTutoring"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         facilitation.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_facilitationFragment)
+            educationViewId = "facilitation"
+            storingEducationSubcategoryViewId(educationViewId)
         }
     }
 
     private fun clickListenersForPrimary() {
         primarySST.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primarySstFragment)
+            educationViewId = "primary_sst"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryScience.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryScienceFragment)
+            educationViewId = "primary_science"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryMath.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryMathFragment)
+            educationViewId = "primary_math"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryLiteracy.setOnClickListener {
-            //to be worked later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryEnglishFragment)
+            educationViewId = "primary_literacy"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryReadAndWrite.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryEnglishFragment)
+            educationViewId = "primary_readAndWrite"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryDrawing.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryEnglishFragment)
+            educationViewId = "primary_drawing"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         primaryEnglish.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_primaryEnglishFragment)
+            educationViewId = "primary_english"
+            storingEducationSubcategoryViewId(educationViewId)
         }
+    }
+
+    private fun storingEducationSubcategoryViewId(educationViewId: String) {
+        sharedViewModel.savingEducationViewId(educationViewId)
+        findNavController().navigate(R.id.action_educationSubCategoryFragment_to_mainEducationRecyclerviewFragment)
     }
 
     private fun clickListenersForArts() {
         history.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_historyFragment)
+            educationViewId = "history"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         geography.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_geographyFragment)
+            educationViewId = "geography"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         art.setOnClickListener {
-
+            educationViewId = "art"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         economics.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_economicsFragment)
+            educationViewId = "economics"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         entrepreneurship.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_economicsFragment)
+            educationViewId = "entrepreneurship"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         commerce.setOnClickListener {
+            educationViewId = "commerce"
+            storingEducationSubcategoryViewId(educationViewId)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_economicsFragment)
         }
         CRE.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_christianReligiousEducationFragment)
+            educationViewId = "christianReligiousEducation"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         IRE.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_christianReligiousEducationFragment)
+            educationViewId = "islamicReligiousEducation"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         languages.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_languageSubjectsFragment)
+            educationViewId = "subjects_languages"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         literature.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_literatureFragment)
+            educationViewId = "literature"
+            storingEducationSubcategoryViewId(educationViewId)
         }
     }
 
     private fun clickListenerForScience() {
         physics.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_physicsFragment)
+            educationViewId = "physics"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         chemistry.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_chemistryFragment)
+            educationViewId = "chemistry"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         mathematics.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_mathematicsFragment)
+            educationViewId = "mathematics"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         biology.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_biologyFragment)
+            educationViewId = "biology"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         agriculture.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_agricultureFragment)
+            educationViewId = "agriculture"
+            storingEducationSubcategoryViewId(educationViewId)
         }
         technicalDrawing.setOnClickListener {
+            educationViewId = "technicalDrawing"
+            storingEducationSubcategoryViewId(educationViewId)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_physicsFragment)
         }
         foodAndNutrition.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_biologyFragment)
+            educationViewId = "foodAndNutrition"
+            storingEducationSubcategoryViewId(educationViewId)
 
         }
         informationTechnology.setOnClickListener {
-            findNavController().navigate(R.id.action_educationSubCategoryFragment_to_computerStudiesFragment)
+            educationViewId = "informationTechnology"
+            storingEducationSubcategoryViewId(educationViewId)
         }
     }
 

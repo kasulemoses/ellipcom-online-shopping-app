@@ -41,7 +41,7 @@ class AgricultureFragment : Fragment() {
         binding.agricultureRV.adapter = productAdapter
 
         binding.agricultureLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_agricultureFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

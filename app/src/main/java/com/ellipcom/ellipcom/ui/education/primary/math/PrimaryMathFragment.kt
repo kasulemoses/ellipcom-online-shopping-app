@@ -41,7 +41,7 @@ class PrimaryMathFragment : Fragment() {
         binding.primaryMathRV.adapter = productAdapter
 
         binding.primaryMathLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_primaryMathFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

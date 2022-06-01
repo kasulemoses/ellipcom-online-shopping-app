@@ -73,10 +73,10 @@ class DetailProductFragment : Fragment() {
 
         firestoreDb = FirebaseFirestore.getInstance()
 
-        sharedViewModel.productId.observe(viewLifecycleOwner, {
+        sharedViewModel.productId.observe(viewLifecycleOwner) {
             getDataFromDb(it)
 
-        })
+        }
 
 
         //pdtId = productIdReceived.productDetails

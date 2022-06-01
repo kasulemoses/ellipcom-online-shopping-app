@@ -42,7 +42,7 @@ class PrimaryEnglishFragment : Fragment() {
         binding.primaryEngRV.adapter = productAdapter
 
         binding.primaryEngLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_primaryEnglishFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

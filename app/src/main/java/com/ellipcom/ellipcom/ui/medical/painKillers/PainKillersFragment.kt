@@ -43,7 +43,7 @@ class PainKillersFragment : Fragment() {
         binding.painKillersRV.adapter = productAdapter
 
         binding.painKillersLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_painKillersFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

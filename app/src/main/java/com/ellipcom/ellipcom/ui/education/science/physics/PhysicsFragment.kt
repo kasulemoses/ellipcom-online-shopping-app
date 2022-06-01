@@ -42,7 +42,7 @@ class PhysicsFragment : Fragment() {
         binding.physicsRV.adapter = productAdapter
 
         binding.physicsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_physicsFragment_to_educationSubCategoryFragment)
+
         }
 
         attachingDataToRv()

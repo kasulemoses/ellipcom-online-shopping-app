@@ -41,7 +41,7 @@ class FlourFragment : Fragment() {
         binding.flourRV.adapter = productAdapter
 
         binding.flourLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_flourFragment_to_foodAndDrinksSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

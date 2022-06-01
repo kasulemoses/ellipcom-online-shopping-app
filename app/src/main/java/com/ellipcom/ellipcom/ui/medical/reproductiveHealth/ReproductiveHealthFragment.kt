@@ -42,7 +42,7 @@ class ReproductiveHealthFragment : Fragment() {
         binding.reproductiveHealthRV.adapter = productAdapter
 
         binding.reproductiveHealthLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_reproductiveHealthFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

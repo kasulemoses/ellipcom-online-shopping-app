@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
         binding.historyRV.adapter = productAdapter
 
         binding.historyLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_historyFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

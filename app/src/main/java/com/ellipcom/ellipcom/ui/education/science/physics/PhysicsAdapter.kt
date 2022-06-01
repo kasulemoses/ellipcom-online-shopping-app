@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.databinding.MainProductItemListRecyclerBinding
-import com.ellipcom.ellipcom.diffUtil.TelevisionDiffUtil
 import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.squareup.picasso.Picasso
 
@@ -17,7 +16,7 @@ class PhysicsAdapter : RecyclerView.Adapter<PhysicsAdapter.ProductsViewHolder>()
         RecyclerView.ViewHolder(productItemBinding.root)
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ProductsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         return ProductsViewHolder(
             MainProductItemListRecyclerBinding.inflate(
                 LayoutInflater.from(

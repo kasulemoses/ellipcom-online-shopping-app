@@ -43,7 +43,7 @@ class HerbalsAndSyrupsFragment : Fragment() {
         binding.herbalAndSyrupsRV.adapter = productAdapter
 
         binding.herbalAndSyrupsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_herbalsAndSyrupsFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

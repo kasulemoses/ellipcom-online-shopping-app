@@ -42,7 +42,7 @@ class AntibioticsFragment : Fragment() {
 
 
         binding.antibioticsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_antibioticsFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

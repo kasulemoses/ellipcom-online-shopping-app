@@ -41,7 +41,7 @@ class BabyEquipmentsFragment : Fragment() {
         binding.babyEquipRV.adapter = productAdapter
 
         binding.babyEquipLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_babyEquipmentsFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

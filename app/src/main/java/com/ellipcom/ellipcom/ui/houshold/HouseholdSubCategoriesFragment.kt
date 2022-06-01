@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentHouseholdSubCategoriesBinding
+import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.google.android.material.card.MaterialCardView
 
 
@@ -90,6 +92,10 @@ class HouseholdSubCategoriesFragment : Fragment() {
     private lateinit var furnitureSideboards: TextView
     private lateinit var furnitureDoors: TextView
 
+    //shared view model
+    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
+
+    private var householdSubCat = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -315,59 +321,73 @@ class HouseholdSubCategoriesFragment : Fragment() {
 
     private fun clickListenerForFurniture() {
         furnitureBeds.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_bedsFragment)
+            householdSubCat = "furniture_beds"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         furnitureChairs.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_chairsFragment)
+            householdSubCat = "furniture_chairs"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         furnitureDoors.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_doorsFragment)
+            householdSubCat = "furniture_doors"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         furnitureSideboards.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_sideboardsFragment)
+            householdSubCat = "furniture_sideboards"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         furnitureSofas.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_sofasFragment)
+            householdSubCat = "furniture_sofas"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         furnitureTables.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_tablesFragment)
+            householdSubCat = "furniture_tables"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
+    }
+
+    private fun storingHouseholdSubCatToSharedViewModel(householdSubCat: String) {
+        sharedViewModel.savingHouseholdSubCatViewId(householdSubCat)
+        findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_mainHouseholdRecyclerViewSubCatFragment)
     }
 
     private fun clickListenersForHomeAndOffices() {
         refrigerator.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_refrigeratorsFragment)
+            householdSubCat = "homeAndOffice_refrigerator"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         cookers.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_cookersFragment)
+            householdSubCat = "homeAndOffice_cookers"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         microwaves.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_microwavesFragment)
+            householdSubCat = "homeAndOffice_microwaves"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         carpets.setOnClickListener {
+            householdSubCat = "homeAndOffice_carpets"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment)
         }
         vacuumCleaners.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment)
+            householdSubCat = "homeAndOffice_vacuumCleaners"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         washingMachine.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment)
+            householdSubCat = "homeAndOffice_washingMachines"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electricExtensions.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment)
+            householdSubCat = "homeAndOffice_electricExtensions"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electricSmallAppliances.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smallElectricAppliancesFragment)
+            householdSubCat = "homeAndOffice_smallAppliances"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         homeUtensils.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_utensilsFragment)
+            householdSubCat = "homeAndOffice_utensils"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
     }
 
@@ -376,81 +396,84 @@ class HouseholdSubCategoriesFragment : Fragment() {
 
     private fun clickListenerForComputing() {
         desktopComputer.setOnClickListener {
+            householdSubCat = "computing_desktopComputer"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_monitorsAndCpuFragment)
         }
         printersAndScanner.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_printersAndScannersFragment)
+            householdSubCat = "computing_printerAndScanners"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         laptops.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_laptopsFragment)
+            householdSubCat = "computing_laptops"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         usbFlashDrives.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_computerAccessoriesFragment)
+            householdSubCat = "computing_usbFlashDrives"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         computerMonitor.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_monitorsAndCpuFragment)
+            householdSubCat = "computing_computerMonitors"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         computerAccessories.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_computerAccessoriesFragment)
+            householdSubCat = "computing_accessories"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         computerCpu.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_monitorsAndCpuFragment)
+            householdSubCat = "computing_cpu"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         computerLaptopBags.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_computerAccessoriesFragment)
+            householdSubCat = "computing_laptopBags"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         computerExternalAndInternalHardDrives.setOnClickListener {
+            householdSubCat = "computing_externalAndInternalHardDrive"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_computerAccessoriesFragment)
         }
 
     }
 
 
-
     private fun clickListenerForPhonesAndTablets() {
         smartPhone.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_smartPhonesFragment)
+            householdSubCat = "phonesAndTablets_smartPhones"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         featuredPhones.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_featuredPhonesFragment)
+            householdSubCat = "phonesAndTablets_featuredPhones"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         tablets.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_tabletsFragment)
+            householdSubCat = "phonesAndTablets_tablets"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         phoneLandLine.setOnClickListener {
-
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
+            householdSubCat = "phonesAndTablets_phoneAndLandLines"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         phoneChargers.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
+            householdSubCat = "phonesAndTablets_phoneChargers"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         phoneDataAndConnectivity.setOnClickListener {
+            householdSubCat = "phonesAndTablets_dataAndConnectivity"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
 
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
         }
         phoneHeadsets.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
+            householdSubCat = "phonesAndTablets_Headsets"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         phoneMemoryCards.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
+            householdSubCat = "phonesAndTablets_memoryCards"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         phoneLaptopBags.setOnClickListener {
-            //to be worked on later
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_phoneChargersFragment)
+            householdSubCat = "phonesAndTablets_laptopBags"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
     }
 
@@ -458,26 +481,33 @@ class HouseholdSubCategoriesFragment : Fragment() {
 
     private fun clickListenersForElectronics() {
         electronicTelevision.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_televisionFragment)
+            householdSubCat = "electronics_television"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electronicDvdPlayer.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_homeTheatresFragment)
+            householdSubCat = "electronics_dvdPlayer"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electronicHomeTheatres.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_homeTheatresFragment)
+            householdSubCat = "electronics_homeTheatres"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electronicSpeakers.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_homeTheatresFragment)
+            householdSubCat = "electronics_speakers"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
 
         }
         electronicPortableAudio.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_portableAudioFragment2)
+            householdSubCat = "electronics_portableAudio"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electronicDigitalCamera.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_projectorsFragment)
+            householdSubCat = "electronics_digitalCamera"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
         electronicProjectors.setOnClickListener {
-            findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_projectorsFragment)
+            householdSubCat = "electronics_projectors"
+            storingHouseholdSubCatToSharedViewModel(householdSubCat)
         }
     }
 

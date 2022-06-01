@@ -42,7 +42,7 @@ class EconomicsFragment : Fragment() {
         binding.economicRV.adapter = productAdapter
 
         binding.economicsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_economicsFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

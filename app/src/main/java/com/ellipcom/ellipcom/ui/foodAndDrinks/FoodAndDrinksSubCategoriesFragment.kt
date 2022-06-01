@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentFoodAndDrinksSubCategoriesBinding
+import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.google.android.material.card.MaterialCardView
 
 class FoodAndDrinksSubCategoriesFragment : Fragment() {
@@ -17,6 +19,9 @@ class FoodAndDrinksSubCategoriesFragment : Fragment() {
     //view binding
     private var _binding: FragmentFoodAndDrinksSubCategoriesBinding? = null
     private val binding get() = _binding!!
+
+    //shared view model
+    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
 
     //views
     private lateinit var foodCardView: MaterialCardView
@@ -42,6 +47,7 @@ class FoodAndDrinksSubCategoriesFragment : Fragment() {
     private lateinit var energyDrink: TextView
     private lateinit var alcoholicDrink: TextView
 
+    private var foodAndDrinksSubCat = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,8 +79,6 @@ class FoodAndDrinksSubCategoriesFragment : Fragment() {
 
         clickListenerForDrink()
 
-
-
         foodCardView = binding.foodCard
         foodContent = binding.foodContent
         foodLinearLayout = binding.linearFood
@@ -87,61 +91,74 @@ class FoodAndDrinksSubCategoriesFragment : Fragment() {
 
         givingViewsActions()
 
+
     }
 
     private fun clickListenerForDrink() {
 
         mineralWaterDrink.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_softDrinksFragment)
-
+            foodAndDrinksSubCat = "mineralWaterDrink"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
         }
 
         fruitJuicesDrink.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_softDrinksFragment)
+            foodAndDrinksSubCat = "fruitJuicesDrink"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
         }
 
         sodaDrink.setOnClickListener {
+            foodAndDrinksSubCat = "sodaDrink"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_softDrinksFragment)
         }
 
         energyDrink.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_hardDrinksFragment)
+            foodAndDrinksSubCat = "energyDrink"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
         }
 
         alcoholicDrink.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_hardDrinksFragment)
+            foodAndDrinksSubCat = "alcoholicDrink"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
         }
+    }
+
+    private fun storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat: String) {
+        sharedViewModel.savingFoodAndDrinksViewId(foodAndDrinksSubCat)
+        findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment)
+
     }
 
     private fun clickListenerForFood() {
 
         riceFood.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_riceFragment)
-
+            foodAndDrinksSubCat = "food_rice"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
         }
 
         flourFood.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_flourFragment)
+            foodAndDrinksSubCat = "food_flour"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
         }
         sugarFood.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_sugarFragment)
+            foodAndDrinksSubCat = "food_sugar"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
 
         }
         cookingOilFood.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_cookingOilsFragment)
-
+            foodAndDrinksSubCat = "food_cookingOil"
+            storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat)
         }
     }
 
     private fun givingViewsActions() {
 
         foodAndDrinksLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_navigation_categories)
+           findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_navigation_categories)
         }
 
         //food

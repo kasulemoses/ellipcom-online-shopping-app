@@ -42,7 +42,7 @@ class MathematicsFragment : Fragment() {
         binding.mathematicsRV.adapter = productAdapter
 
         binding.mathematicsLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_mathematicsFragment_to_educationSubCategoryFragment)
+
         }
 
         attachingDataToRv()

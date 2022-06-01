@@ -40,7 +40,7 @@ class HomeTutoringFragment : Fragment() {
         binding.homeTutoringRV.adapter = productAdapter
 
         binding.homeTutoringLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_homeTutoringFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

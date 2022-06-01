@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ellipcom.ellipcom.databinding.FragmentTelevisionBinding
+import com.ellipcom.ellipcom.model.ProductData
 import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,7 +26,7 @@ class TelevisionFragment : Fragment() {
     private lateinit var fireDb: FirebaseFirestore
 
     //arraylist
-    private lateinit var tvArrayList: ArrayList<ProductInformationModel>
+    private lateinit var tvArrayList: ArrayList<ProductData>
 
 
     override fun onCreateView(
@@ -65,7 +66,7 @@ class TelevisionFragment : Fragment() {
                     for (product in value.documentChanges) {
                         if (product.type == DocumentChange.Type.ADDED) {
 
-                            tvArrayList.add(product.document.toObject(ProductInformationModel::class.java))
+                            tvArrayList.add(product.document.toObject(ProductData::class.java))
 
                             televisionAdapter.setTelevisionData(tvArrayList)
                         }

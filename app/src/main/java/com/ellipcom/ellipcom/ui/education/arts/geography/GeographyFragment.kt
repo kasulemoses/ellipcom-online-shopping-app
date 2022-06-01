@@ -43,7 +43,7 @@ class GeographyFragment : Fragment() {
         binding.geographyRV.adapter = productAdapter
 
         binding.geographyLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_geographyFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

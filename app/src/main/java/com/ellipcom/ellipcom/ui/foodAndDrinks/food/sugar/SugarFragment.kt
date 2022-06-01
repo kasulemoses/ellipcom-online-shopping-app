@@ -41,7 +41,7 @@ class SugarFragment : Fragment() {
         binding.sugarRV.adapter = productAdapter
 
         binding.sugarLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_sugarFragment_to_foodAndDrinksSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

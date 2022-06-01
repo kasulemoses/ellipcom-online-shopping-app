@@ -43,7 +43,7 @@ class FacilitationFragment : Fragment() {
         binding.facilitationRV.adapter = productAdapter
 
         binding.facilitationLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_facilitationFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

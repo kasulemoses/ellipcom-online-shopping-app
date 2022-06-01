@@ -103,7 +103,7 @@ class AddressNoteBookFragment : Fragment(), OnProductClickListener {
     override fun onProductItemClick(position: Int) {
         val addressId = noteBookAdapter.saveAddressFromAdapter(position)
         sharedViewModel.saveCustomerAddressId(addressId)
-        findNavController().navigate(R.id.action_addressNoteBookFragment_to_deliveryFragment)
+
     }
 
 

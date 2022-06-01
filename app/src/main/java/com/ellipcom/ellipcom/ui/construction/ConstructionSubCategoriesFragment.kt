@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentConstructionSubCategoriesBinding
+import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.google.android.material.card.MaterialCardView
 
 
@@ -107,6 +110,10 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private lateinit var technicalCivilEngineer: TextView
     private lateinit var technicalDesignerAndArchitect: TextView
 
+    //shared view model
+    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
+
+    private var constructionSubCategory = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -228,28 +235,38 @@ class ConstructionSubCategoriesFragment : Fragment() {
 
         settingUpListenersToViews()
 
+    }
 
+    private fun storeConstructionSubCatIdToSharedViewmodel(consViewId: String) {
+        sharedViewModel.savingConstructionViewId(consViewId)
+        findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_mainConstructionRecyclerviewFragment)
     }
 
     private fun settingListenersForTechnicalServices() {
 
         technicalPlumber.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_plumbersFragment)
+            constructionSubCategory = "technicalPlumber"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         technicalElectrician.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_electriciansFragment)
+            constructionSubCategory = "technicalElectrician"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         technicalProjectManagers.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_projectMangersFragment)
+            constructionSubCategory = "technicalProjectManagers"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         technicalSurveyors.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_surveyorsFragment)
+            constructionSubCategory = "technicalSurveyors"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         technicalCivilEngineer.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_civilengineersFragment)
+            constructionSubCategory = "technicalCivilEngineer"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         technicalDesignerAndArchitect.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_designersAndArchitectsFragment)
+            constructionSubCategory = "technicalDesignerAndArchitect"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -257,13 +274,16 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForCarpentryTools() {
 
         carpentryGrinder.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_grindersFragment)
+            constructionSubCategory = "carpentryGrinder"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         carpentryCuttingBlades.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_cuttingBladesFragment)
+            constructionSubCategory = "carpentryCuttingBlades"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         carpentryDrillers.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_drillersFragment)
+            constructionSubCategory = "carpentryDrillers"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -271,16 +291,20 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForElectricalMaterials() {
 
         electricalSockets.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_socketsFragment)
+            constructionSubCategory = "electricalSockets"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         electricalwires.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_electricalWiresFragment)
+            constructionSubCategory = "electricalWires"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         electricalBulbAndTubes.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_bulbsAndTubesFragment)
+            constructionSubCategory = "electricalBulbAndTubes"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         electricalConduits.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_electricalConduitsFragment)
+            constructionSubCategory = "electricalConduits"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -288,23 +312,29 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForPlumbingMaterials() {
 
         plumbingTiles.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_tilesFragment)
+            constructionSubCategory = "plumbingTiles"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         plumbingSinksAndWaterBasins.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_sinkAndWaterBasinsFragment)
+            constructionSubCategory = "plumbingSinksAndWaterBasins"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         plumbingShowers.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_showersFragment)
+            constructionSubCategory = "plumbingShowers"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         plumbingJunctionAndBends.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_junctionsAndBendsFragment)
+            constructionSubCategory = "plumbingJunctionAndBends"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         plumbingDrainagePipesAndConduits.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_drainagePipesAndConduitsFragment)
+            constructionSubCategory = "plumbingDrainagePipesAndConduits"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
         plumbingWaterHeaters.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_waterHaetersFragment)
+            constructionSubCategory = "plumbingWaterHeaters"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -312,22 +342,28 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForConstructionMaterials() {
 
         constructionMaterialCement.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_cementFragment)
+            constructionSubCategory = "constructionMaterialCement"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         constructionMaterialLime.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_cementFragment)
+            constructionSubCategory = "constructionMaterialLime"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         constructionMaterialBlockAndBricks.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_blocksAndBricksFragment)
+            constructionSubCategory = "constructionMaterialBlockAndBricks"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         constructionMaterialWaterProofingMaterials.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_waterProofingMaterialFragment)
+            constructionSubCategory = "constructionMaterialWaterProofingMaterials"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         constructionMaterialWallCarpets.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_wallCarpetsFragment)
+            constructionSubCategory = "constructionMaterialWallCarpets"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         constructionMaterialGlasses.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_glassesFragment)
+            constructionSubCategory = "constructionMaterialGlasses"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -335,28 +371,36 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForBuildingTools() {
 
         buildingToolSpade.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_spadesFragment)
+            constructionSubCategory = "buildingToolSpade"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolHoes.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_hoesFragment)
+            constructionSubCategory = "buildingToolHoes"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolTrowels.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_trowelsFragment)
+            constructionSubCategory = "buildingToolTrowels"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolWheelBarrows.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_wheelBarrowsFragment)
+            constructionSubCategory = "buildingToolWheelBarrows"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolBobs.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_constructionBobsAndLevelsFragment)
+            constructionSubCategory = "buildingToolBobs"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolLevels.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_constructionBobsAndLevelsFragment)
+            constructionSubCategory = "buildingToolLevels"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolSteelAndWood.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_constructionSteelAndWoodsFragment)
+            constructionSubCategory = "buildingToolSteelAndWood"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         buildingToolFloats.setOnClickListener {
-            findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_constructionFloatsFragment)
+            constructionSubCategory = "buildingToolFloats"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -364,28 +408,37 @@ class ConstructionSubCategoriesFragment : Fragment() {
     private fun settingListenersForSafetyGear() {
 
         safetyGearHelmet.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_helmetsFragment)
+            constructionSubCategory = "safetyGearHelmet"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
+
         }
         safetyGearEyeShield.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_eyeShieldsFragment)
+            constructionSubCategory = "safetyGearEyeShield"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearReflectorJackets.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_reflectorJacketsFragment)
+            constructionSubCategory = "safetyGearReflectorJackets"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearBelts.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBeltdFragment)
+            constructionSubCategory = "safetyGearBelts"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearSafetyBoots.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_safetyBootsFragment)
+            constructionSubCategory = "safetyGearSafetyBoots"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearGamBoots.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_gamBootsFragment)
+            constructionSubCategory = "safetyGearGamBoots"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearOverall.setOnClickListener {
-            //findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_overallFragment)
+            constructionSubCategory = "safetyGearOverall"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
         safetyGearEarBad.setOnClickListener {
-           // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_earBadFragment)
+            constructionSubCategory = "safetyGearEarBad"
+            storeConstructionSubCatIdToSharedViewmodel(constructionSubCategory)
         }
 
     }
@@ -662,4 +715,6 @@ class ConstructionSubCategoriesFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 }

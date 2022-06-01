@@ -42,7 +42,7 @@ class ChemistryFragment : Fragment() {
         binding.chemistryRV.adapter = productAdapter
 
         binding.chemistryLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_chemistryFragment_to_educationSubCategoryFragment)
+
         }
 
         attachingDataToRv()

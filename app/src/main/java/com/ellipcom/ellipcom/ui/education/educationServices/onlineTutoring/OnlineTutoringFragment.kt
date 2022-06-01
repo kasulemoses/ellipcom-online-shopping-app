@@ -30,7 +30,7 @@ class OnlineTutoringFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOnlineTutoringBinding.inflate(inflater, container, false)
 
 
@@ -41,7 +41,7 @@ class OnlineTutoringFragment : Fragment() {
         binding.onlineTutoringRV.adapter = productAdapter
 
         binding.onlineTutoringLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_onlineTutoringFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

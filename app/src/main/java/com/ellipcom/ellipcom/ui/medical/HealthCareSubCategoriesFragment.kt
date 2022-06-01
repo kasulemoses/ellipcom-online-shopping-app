@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentHealthCareSubCategoriesBinding
+import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.google.android.material.card.MaterialCardView
 
 class HealthCareSubCategoriesFragment : Fragment() {
@@ -72,6 +74,10 @@ class HealthCareSubCategoriesFragment : Fragment() {
     private lateinit var homeNurses: TextView
     private lateinit var schoolNurses: TextView
 
+    //shared view model
+    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
+
+    private var medicalSubCat = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -158,70 +164,95 @@ class HealthCareSubCategoriesFragment : Fragment() {
     private fun settingMedicalServices() {
 
         personalDoctor.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_medicalServicesFragment)
+            medicalSubCat = "personalDoctor"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         familyDoctor.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_medicalServicesFragment)
+            medicalSubCat = "familyDoctor"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         homeNurses.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_medicalServicesFragment)
+            medicalSubCat = "homeNurses"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         schoolNurses.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_medicalServicesFragment)
+            medicalSubCat = "schoolNurses"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
 
     }
 
     private fun settingSexualAndReproductiveHealth() {
         contraceptives.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_contraceptivesFragment)
+            medicalSubCat = "sexualAndReproductiveHealth_contraceptives"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         sanitaryPad.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_reproductiveHealthFragment)
+            medicalSubCat = "sexualAndReproductiveHealth_sanitaryPad"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         pregnancyTestStrip.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_reproductiveHealthFragment)
+            medicalSubCat = "sexualAndReproductiveHealth_pregnancyTestStrip"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         hivSelfTestKits.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_reproductiveHealthFragment)
+            medicalSubCat = "sexualAndReproductiveHealth_hivSelfTestKits"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
+    }
+
+    private fun storingMedicalSubCatToSharedViewModel(medicalSubCat: String) {
+        sharedViewModel.savingMedicalSubCatViewId(medicalSubCat)
+        findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_mainMedicalRecyclerViewForSubCatFragment)
     }
 
     private fun settingBabyLove() {
         pampersAndDiapers.setOnClickListener {
+            medicalSubCat = "babyLove_pampersAndDiapers"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
 
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment)
         }
         huggies.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment)
+            medicalSubCat = "babyLove_huggies"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
+
         }
         babySoap.setOnClickListener {
+            medicalSubCat = "babyLove_babySoap"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
 
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment)
+
         }
         humpersAndMamaKits.setOnClickListener {
+            medicalSubCat = "babyLove_humpersAndMamaKits"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
 
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment)
         }
         oilsAndBabyLotion.setOnClickListener {
 
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_pampersAndDiapersFragment)
+            medicalSubCat = "babyLove_oilsAndBabyLotion"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
+
         }
     }
 
     private fun settingPersonalCare() {
 
         glovesAndMasks.setOnClickListener {
-
+            medicalSubCat = "personalCare_glovesAndMasks"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         personalCareCotton.setOnClickListener {
-
+            medicalSubCat = "personalCare_Cotton"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         deodorantsAndPerfume.setOnClickListener {
-
+            medicalSubCat = "personalCare_deodorantsAndPerfume"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         creamsAndLotion.setOnClickListener {
-
+            medicalSubCat = "personalCare_creamsAndLotion"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
 
     }
@@ -229,16 +260,20 @@ class HealthCareSubCategoriesFragment : Fragment() {
     private fun settingHomeMedicines() {
 
         herbalAndSyrups.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_herbalsAndSyrupsFragment)
+            medicalSubCat = "homeMedicine_herbalAndSyrups"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         antibiotics.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_antibioticsFragment)
+            medicalSubCat = "homeMedicine_antibiotics"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         vitaminAndSupplements.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_vitaminsAndFoodSupplementsFragment)
+            medicalSubCat = "homeMedicine_vitaminAndSupplements"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
         homeMedicinePainKillers.setOnClickListener {
-            findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_painKillersFragment)
+            medicalSubCat = "homeMedicine_homeMedicinePainKillers"
+            storingMedicalSubCatToSharedViewModel(medicalSubCat)
         }
 
     }

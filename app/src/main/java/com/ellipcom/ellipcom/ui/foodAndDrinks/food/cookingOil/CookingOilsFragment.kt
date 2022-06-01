@@ -42,7 +42,7 @@ class CookingOilsFragment : Fragment() {
         binding.cookingOilRV.adapter = productAdapter
 
         binding.cookingOilLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_cookingOilsFragment_to_foodAndDrinksSubCategoriesFragment)
+
         }
 
         attachingDataToRv()

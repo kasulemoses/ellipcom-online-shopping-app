@@ -43,7 +43,7 @@ class ContraceptivesFragment : Fragment() {
         attachingDataToRv()
 
         binding.contraceptivesLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_contraceptivesFragment_to_healthCareSubCategoriesFragment)
+
         }
         return binding.root
     }

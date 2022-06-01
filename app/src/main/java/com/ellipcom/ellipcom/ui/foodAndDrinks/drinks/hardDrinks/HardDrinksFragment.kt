@@ -41,7 +41,7 @@ class HardDrinksFragment : Fragment() {
         binding.hardDrinksRV.adapter = productAdapter
 
         binding.hardDrinksLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_hardDrinksFragment_to_foodAndDrinksSubCategoriesFragment)
+
         }
         attachingDataToRv()
 

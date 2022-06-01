@@ -41,7 +41,7 @@ class PrimarySstFragment : Fragment() {
         binding.primarySstRV.adapter = productAdapter
 
         binding.primarySstLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_primarySstFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

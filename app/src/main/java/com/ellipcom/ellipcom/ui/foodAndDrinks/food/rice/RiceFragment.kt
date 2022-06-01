@@ -41,7 +41,7 @@ class RiceFragment : Fragment() {
         binding.riceRV.adapter = productAdapter
 
         binding.riceLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_riceFragment_to_foodAndDrinksSubCategoriesFragment)
+
         }
 
         attachingDataToRv()

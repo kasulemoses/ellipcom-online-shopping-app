@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.databinding.MainProductItemListRecyclerBinding
-import com.ellipcom.ellipcom.diffUtil.TelevisionDiffUtil
 import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.squareup.picasso.Picasso
 

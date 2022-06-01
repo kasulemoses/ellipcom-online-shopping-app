@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.databinding.MainProductItemListRecyclerBinding
-import com.ellipcom.ellipcom.diffUtil.TelevisionDiffUtil
+import com.ellipcom.ellipcom.diffUtil.MainAppDiffUtil
+import com.ellipcom.ellipcom.model.ProductData
 import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.squareup.picasso.Picasso
 
 class TelevisionAdapter : RecyclerView.Adapter<TelevisionAdapter.TelevisionViewHolder>() {
 
-    private var oldTelevisionProductList = ArrayList<ProductInformationModel>()
+    private var oldTelevisionProductList = ArrayList<ProductData>()
 
     class TelevisionViewHolder(val productItemBinding: MainProductItemListRecyclerBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
@@ -28,13 +29,13 @@ class TelevisionAdapter : RecyclerView.Adapter<TelevisionAdapter.TelevisionViewH
     }
 
     override fun onBindViewHolder(holder: TelevisionViewHolder, position: Int) {
-        holder.productItemBinding.productName.text = oldTelevisionProductList[position].productName
+        holder.productItemBinding.productName.text = oldTelevisionProductList[position].pdtName
         holder.productItemBinding.productActualPrice.text =
-            oldTelevisionProductList[position].productActualPrice
+            oldTelevisionProductList[position].pdtPrice
         holder.productItemBinding.productRegularPrice.text =
-            oldTelevisionProductList[position].productRegularPrice
+            oldTelevisionProductList[position].pdtRegularPrice
 
-        Picasso.get().load(oldTelevisionProductList[position].productImageUrl)
+        Picasso.get().load(oldTelevisionProductList[position].pdtImageUrl)
             .into(holder.productItemBinding.productImage)
 
     }
@@ -43,8 +44,8 @@ class TelevisionAdapter : RecyclerView.Adapter<TelevisionAdapter.TelevisionViewH
         return oldTelevisionProductList.size
     }
 
-    fun setTelevisionData(newTelevisionList: ArrayList<ProductInformationModel>) {
-        val diffUtil = TelevisionDiffUtil(
+    fun setTelevisionData(newTelevisionList: ArrayList<ProductData>) {
+        val diffUtil = MainAppDiffUtil(
             oldTelevisionProductList,
             newTelevisionList
         )

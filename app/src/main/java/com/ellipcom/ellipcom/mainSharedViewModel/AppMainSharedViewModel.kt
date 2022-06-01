@@ -54,5 +54,42 @@ class AppMainSharedViewModel : ViewModel() {
         _shippingMethod.value = shipMethod
     }
 
+    /*
+    * storing and passing the item view id
+    * of the construction to the main construction recyclerview fragment
+    * */
+    private var _constructionViewId = MutableLiveData("constId")
+    var constructionViewId:LiveData<String> = _constructionViewId
+    fun savingConstructionViewId(viewId:String){
+        _constructionViewId.value = viewId
+    }
+
+
+    private var _educationViewId = MutableLiveData("educId")
+    var educationViewId:LiveData<String> = _educationViewId
+    fun savingEducationViewId(viewId:String){
+        _educationViewId.value = viewId
+    }
+
+    private var _foodAndDrinksViewId = MutableLiveData("foodId")
+    var foodAndDrinksViewId:LiveData<String> = _foodAndDrinksViewId
+    fun savingFoodAndDrinksViewId(viewId:String){
+        _foodAndDrinksViewId.value = viewId
+    }
+
+    private var _houseHoldSubCatViewId = MutableLiveData("householdId")
+    var householdSubCatViewId:LiveData<String> = _houseHoldSubCatViewId
+    fun savingHouseholdSubCatViewId(viewId:String){
+        _houseHoldSubCatViewId.value = viewId
+    }
+
+    private var _medicalSubCatViewId = MutableLiveData("medicalId")
+    var medicalSubCatViewId:LiveData<String> = _medicalSubCatViewId
+    fun savingMedicalSubCatViewId(viewId:String){
+        _medicalSubCatViewId.value = viewId
+    }
+
+
+
 
 }

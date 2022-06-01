@@ -195,7 +195,7 @@ class HomeFragment : Fragment(), OnProductClickListener {
         pdtId = recyclerview1Adapter.saveProductId(position)
         sharedViewModel.productId(pdtId)
 
-        findNavController().navigate(R.id.action_navigation_home_to_detailProductFragment)
+
     }
 
 

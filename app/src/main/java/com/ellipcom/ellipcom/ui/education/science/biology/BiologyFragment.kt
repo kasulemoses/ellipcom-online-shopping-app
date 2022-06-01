@@ -43,7 +43,7 @@ class BiologyFragment : Fragment() {
         binding.biologyRV.adapter = productAdapter
 
         binding.biologyLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_biologyFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

@@ -92,11 +92,9 @@ class DeliveryFragment : Fragment() {
 
 
         //shared view model
-        sharedViewModel.productGrandTotal.observe(viewLifecycleOwner, {
+        sharedViewModel.productGrandTotal.observe(viewLifecycleOwner) {
             computingTotalMoney(it)
-        })
-
-
+        }
 
 
         initialisingDeliveryViews()

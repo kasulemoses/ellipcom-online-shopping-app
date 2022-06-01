@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/construction_subcategory_appbar">
 
         <LinearLayout
+            android:id="@+id/main_contruction_sub_cat_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -122,6 +123,7 @@
                     app:cardElevation="8dp">
 
                     <LinearLayout
+                        android:id="@+id/moo_linear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"

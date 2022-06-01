@@ -43,7 +43,7 @@ class LiteratureFragment : Fragment() {
         binding.literatureRV.adapter = productAdapter
 
         binding.literatureLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_literatureFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

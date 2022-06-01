@@ -42,7 +42,7 @@ class LanguageSubjectsFragment : Fragment() {
         binding.languagesStudiesRV.adapter = productAdapter
 
         binding.languageStudiesLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_languageSubjectsFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

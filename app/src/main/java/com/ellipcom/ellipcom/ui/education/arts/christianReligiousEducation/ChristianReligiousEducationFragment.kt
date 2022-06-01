@@ -43,7 +43,7 @@ class ChristianReligiousEducationFragment : Fragment() {
         binding.creRV.adapter = productAdapter
 
         binding.creLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_christianReligiousEducationFragment_to_educationSubCategoryFragment)
+
         }
         attachingDataToRv()
 

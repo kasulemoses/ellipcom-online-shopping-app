@@ -40,7 +40,7 @@ class PampersAndDiapersFragment : Fragment() {
         binding.pampersAndDiapersRV.adapter = productAdapter
 
         binding.pampersAndDiapersLinearBack.setOnClickListener {
-            findNavController().navigate(R.id.action_pampersAndDiapersFragment_to_healthCareSubCategoriesFragment)
+
         }
         attachingDataToRv()
 
