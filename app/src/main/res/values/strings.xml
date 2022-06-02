@@ -57,7 +57,7 @@
     <string name="health_services">Health services</string>
     <string name="quick_rescue">Quick rescue</string>
     <string name="sexual_and_reproductive_health">sexual and reproductive health</string>
-    <string name="top_deals_in_phones_and_tablets">Top deals in phones and tablets</string>
+    <string name="top_deals_in_phones_and_tablets">Top deals of the day</string>
     <string name="view_all">View all</string>
     <string name="sale">sale</string>
     <string name="ugx_150000">ugx 150000</string>
@@ -310,4 +310,7 @@
     <string name="pampers_and_diapers">pampers and diapers</string>
     <string name="medical_services">Medical services</string>
     <string name="herbal_and_syrups__">Herbal and syrups</string>
+    <string name="let_us_find_something">let us find something</string>
+    <string name="explore_the_main_category">Explore the main category</string>
+    <string name="view_all_categories">View all categories</string>
 </resources>

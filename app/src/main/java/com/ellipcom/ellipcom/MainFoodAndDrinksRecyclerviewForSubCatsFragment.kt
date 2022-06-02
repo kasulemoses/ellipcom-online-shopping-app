@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.adapter.MainAAppAdapter
+import com.ellipcom.ellipcom.adapter.MainAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainFoodAndDrinksRecyclerviewForSubcatsBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
-import com.ellipcom.ellipcom.ui.education.science.physics.PhysicsAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,7 +36,7 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
     //arraylist
     private lateinit var productList: ArrayList<ProductData>
 
-    private val productAdapter by lazy { MainAAppAdapter() }
+    private val productAdapter by lazy { MainAppAdapter() }
 
 
     override fun onCreateView(

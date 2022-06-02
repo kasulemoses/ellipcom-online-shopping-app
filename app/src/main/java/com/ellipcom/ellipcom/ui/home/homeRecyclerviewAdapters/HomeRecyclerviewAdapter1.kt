@@ -17,7 +17,7 @@ class HomeRecyclerviewAdapter1(
     RecyclerView.Adapter<HomeRecyclerviewAdapter1.HomeViewHolder1>() {
 
 
-    private var productId = ""
+
 
     class HomeViewHolder1(val recyclerViewItemListBinding: ProductRecyclerViewItemListBinding) :
         RecyclerView.ViewHolder(recyclerViewItemListBinding.root)
@@ -53,15 +53,7 @@ class HomeRecyclerviewAdapter1(
             .placeholder(R.drawable.ic_launcher_background)
             .into(p0.recyclerViewItemListBinding.productImage)
 
-        val actualPrice = HomeProductAdapter1List[p1].productActualPrice!!.toInt()
-        val regularPrice = HomeProductAdapter1List[p1].productRegularPrice!!.toInt()
 
-        val salesBadgePercentage = (actualPrice - regularPrice) * 100 / actualPrice
-
-        p0.recyclerViewItemListBinding.productsSaleBadge.text = "$salesBadgePercentage%"
-
-        //product id capture
-        productId = HomeProductAdapter1List[p1].productId.toString()
 
 
     }
@@ -70,8 +62,5 @@ class HomeRecyclerviewAdapter1(
         return HomeProductAdapter1List.size
     }
 
-    fun saveProductId(pos: Int): String {
-        val _PdtId = HomeProductAdapter1List[pos].productId.toString()
-        return _PdtId
-    }
+
 }

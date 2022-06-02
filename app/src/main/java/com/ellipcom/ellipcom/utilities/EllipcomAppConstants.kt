@@ -6,6 +6,10 @@ class EllipcomAppConstants {
         const val ELLIPCOM_APP_CART = "EllipcomApp cart"
         const val ELLIPCOM_APP_SUB_CART = "cart product"
         const val ELLIPCOM_APP_PRODUCTS = "products"
+        const val ELLIPCOM_APP_CATEGORY = "categories"
+        const val ELLIPCOM_APP_MAIN_CATEGORY = "main_categories"
+        const val ELLIPCOM_APP_LATEST_PRODUCTS = "latest_products"
+        const val ELLIPCOM_APP_NEW_PRODUCTS = "new_products"
 
         //main category database names
         const val ELLIPCOM_APP_MAIN_DATABASE = "Ellipcom main database"

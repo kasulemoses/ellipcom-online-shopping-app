@@ -9,13 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.adapter.MainAAppAdapter
+import com.ellipcom.ellipcom.adapter.MainAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainConstructionRecyclerviewBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
-import com.ellipcom.ellipcom.ui.construction.safetyGears.helmets.HelmetAdapter
-import com.ellipcom.ellipcom.ui.education.arts.christianReligiousEducation.ChristianReligiousEducationAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -35,7 +32,7 @@ class MainConstructionRecyclerviewFragment : Fragment() {
     //arraylist
     private lateinit var productList: ArrayList<ProductData>
 
-    private val productAdapter by lazy { MainAAppAdapter() }
+    private val productAdapter by lazy { MainAppAdapter() }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()

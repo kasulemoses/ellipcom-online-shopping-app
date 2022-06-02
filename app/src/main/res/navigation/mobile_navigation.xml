@@ -9,7 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.ellipcom.ellipcom.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_allSubCategoriesFragment"
+            app:destination="@id/allSubCategoriesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_categories"
@@ -303,5 +309,10 @@
         android:name="com.ellipcom.ellipcom.MainHouseholdRecyclerViewSubCatFragment"
         android:label="fragment_main_household_recycler_view_sub_cat"
         tools:layout="@layout/fragment_main_household_recycler_view_sub_cat" />
+    <fragment
+        android:id="@+id/allSubCategoriesFragment"
+        android:name="com.ellipcom.ellipcom.AllSubCategoriesFragment"
+        android:label="fragment_all_sub_categories"
+        tools:layout="@layout/fragment_all_sub_categories" />
 
 </navigation>
