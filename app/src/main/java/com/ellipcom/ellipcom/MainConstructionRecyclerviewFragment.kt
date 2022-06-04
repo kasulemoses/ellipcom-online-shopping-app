@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainConstructionRecyclerviewBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
+import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.construction.ConstructionSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,14 +28,17 @@ class MainConstructionRecyclerviewFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var mainConstructionRecyclerview: RecyclerView
+    private lateinit var subCategoriesRecyclerview: RecyclerView
 
     //firebase
     private lateinit var fireDb: FirebaseFirestore
 
     //arraylist
     private lateinit var productList: ArrayList<ProductData>
+    private lateinit var subCategoriesList: ArrayList<CategoryModel>
 
     private val productAdapter by lazy { MainAppAdapter() }
+    private val subCategoriesAdapter by lazy { ConstructionSubCategoryAdapter() }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -52,6 +58,9 @@ class MainConstructionRecyclerviewFragment : Fragment() {
         productList = ArrayList()
         mainConstructionRecyclerview.adapter = productAdapter
 
+
+        attachSubCategoryRVWithData()
+
         //shared view model
         sharedViewModel.constructionViewId.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -67,12 +76,52 @@ class MainConstructionRecyclerviewFragment : Fragment() {
         return binding.root
     }
 
+    private fun attachSubCategoryRVWithData() {
+        subCategoriesRecyclerview = binding.constructionSubCatsRV
+        subCategoriesRecyclerview.setHasFixedSize(true)
+        subCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+
+        subCategoriesList = ArrayList()
+
+        subCategoriesRecyclerview.adapter = subCategoriesAdapter
+
+        try {
+            fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
+                .document(EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
+                .collection(EllipcomAppConstants.CONSTRUCTION_SUB_CATEGORIES)
+                .addSnapshotListener { value, error ->
+
+                    if (error != null) {
+                        Toast.makeText(context, "error occurred" + error.message, Toast.LENGTH_SHORT)
+                            .show()
+                        return@addSnapshotListener
+                    }
+
+                    if (value != null) {
+
+                        for (product in value.documentChanges) {
+                            if (product.type == DocumentChange.Type.ADDED) {
+
+                                subCategoriesList.add(product.document.toObject(CategoryModel::class.java))
+
+                                subCategoriesAdapter.setData(subCategoriesList)
+                            }
+                        }
+
+                    }
+
+                }
+        }
+        catch (e:Exception){}
+
+    }
+
     private fun assigningMainConstructionRecyclerview(subCategoryViewId: String) {
 
         try {
             fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
                 .document(EllipcomAppConstants.ELLIPCOM_APP_CONSTRUCTION)
-                .collection(subCategoryViewId)
+                .collection(EllipcomAppConstants.ALL_CONSTRUCTION_PRODUCT)
                 .addSnapshotListener { value, error ->
 
                     if (error != null) {

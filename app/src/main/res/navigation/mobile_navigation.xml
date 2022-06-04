@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/constructionSubCategoriesFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -13,6 +13,31 @@
         <action
             android:id="@+id/action_navigation_home_to_allSubCategoriesFragment"
             app:destination="@id/allSubCategoriesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainConstructionRecyclerviewFragment"
+            app:destination="@id/mainConstructionRecyclerviewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment"
+            app:destination="@id/mainFoodAndDrinksRecyclerviewForSubcatsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainHouseholdRecyclerViewSubCatFragment"
+            app:destination="@id/mainHouseholdRecyclerViewSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainEducationRecyclerviewFragment"
+            app:destination="@id/mainEducationRecyclerviewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainMedicalRecyclerViewForSubCatFragment"
+            app:destination="@id/mainMedicalRecyclerViewForSubCatFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
@@ -111,24 +136,7 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.ellipcom.ellipcom.ui.startScreens.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash">
-        <action
-            android:id="@+id/action_splashFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_splashFragment_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.ellipcom.ellipcom.ui.startScreens.WelcomeFragment"

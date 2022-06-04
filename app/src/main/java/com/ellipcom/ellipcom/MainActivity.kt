@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment -> hideBottomNavigation()
                 R.id.registrationFragment -> hideBottomNavigation()
-                R.id.splashFragment -> hideBottomNavigation()
+                //R.id.splashFragment -> hideBottomNavigation()
                 R.id.welcomeFragment -> hideBottomNavigation()
                 else -> showBottomNavigation()
 

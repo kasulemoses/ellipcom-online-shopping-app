@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
 import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.R
-import com.ellipcom.ellipcom.adapter.MainAppAdapter
 import com.ellipcom.ellipcom.adapter.MainCategoryAdapter
 import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentHomeBinding
@@ -28,7 +28,6 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
-import java.lang.Exception
 
 class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener {
 
@@ -45,7 +44,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
     private lateinit var productList: ArrayList<ProductData>
 
-    private val categoryAdapter by lazy { MainCategoryAdapter() }
+    private val categoryAdapter by lazy { MainHomeFragmentCategoryAdapter() }
+
     private val productAdapter by lazy { MainHomeAppAdapter(this) }
 
     //firebase
@@ -96,7 +96,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
         allProductsRV = binding.recyclerViewHomeMain
         allProductsRV.setHasFixedSize(true)
-        allProductsRV.layoutManager =  GridLayoutManager(context, 2,RecyclerView.HORIZONTAL,true)
+        allProductsRV.layoutManager =  GridLayoutManager(context, 2)
 
         try {
             firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
@@ -133,11 +133,13 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
         categoryRV = binding.recyclerViewHomeCategory
         categoryRV.setHasFixedSize(true)
-        categoryRV.layoutManager =  GridLayoutManager(context, 2,RecyclerView.HORIZONTAL,true)
+        categoryRV.layoutManager = GridLayoutManager(context, 3)
         categoryList = ArrayList()
         categoryRV.adapter = categoryAdapter
 
+
         try {
+
             firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
                 .document(EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
                 .collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_CATEGORY)
@@ -157,12 +159,15 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
                                 categoryList.add(product.document.toObject(CategoryModel::class.java))
 
                                 categoryAdapter.setData(categoryList)
+
+
                             }
                         }
 
                     }
 
                 }
+
         }
         catch (e: Exception){}
     }

@@ -10,6 +10,16 @@ class EllipcomAppConstants {
         const val ELLIPCOM_APP_MAIN_CATEGORY = "main_categories"
         const val ELLIPCOM_APP_LATEST_PRODUCTS = "latest_products"
         const val ELLIPCOM_APP_NEW_PRODUCTS = "new_products"
+        const val HOUSEHOLD_SUB_CATEGORIES = "household_subcategories"
+        const val EDUCATION_SUB_CATEGORIES = "education_subcategories"
+        const val MEDICAL_SUB_CATEGORIES = "healthcare_subcategories"
+        const val FOOD_AND_DRINKS_SUB_CATEGORIES = "food_and_drinks_subcategories"
+        const val CONSTRUCTION_SUB_CATEGORIES = "construction_subcategories"
+        const val ALL_CONSTRUCTION_PRODUCT = "all_construction_products"
+        const val ALL_HOUSEHOLD_PRODUCT = "all_household_products"
+        const val ALL_MEDICAL_PRODUCT = "all_medical_products"
+        const val ALL_FOOD_AND_DRINK_PRODUCT = "all_food_and_drink_products"
+        const val ALL_EDUCATION_PRODUCT = "all_education_products"
 
         //main category database names
         const val ELLIPCOM_APP_MAIN_DATABASE = "Ellipcom main database"
