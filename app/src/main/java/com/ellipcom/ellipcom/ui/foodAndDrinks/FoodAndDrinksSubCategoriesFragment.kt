@@ -128,7 +128,7 @@ class FoodAndDrinksSubCategoriesFragment : Fragment() {
 
     private fun storingFoodAndDrinksSubCatToSharedViewModel(foodAndDrinksSubCat: String) {
         sharedViewModel.savingFoodAndDrinksViewId(foodAndDrinksSubCat)
-        findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment)
+       // findNavController().navigate(R.id.action_foodAndDrinksSubCategoriesFragment_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment)
 
     }
 

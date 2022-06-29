@@ -239,7 +239,7 @@ class ConstructionSubCategoriesFragment : Fragment() {
 
     private fun storeConstructionSubCatIdToSharedViewmodel(consViewId: String) {
         sharedViewModel.savingConstructionViewId(consViewId)
-        findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_mainConstructionRecyclerviewFragment)
+       // findNavController().navigate(R.id.action_constructionSubCategoriesFragment_to_mainConstructionRecyclerviewFragment)
     }
 
     private fun settingListenersForTechnicalServices() {

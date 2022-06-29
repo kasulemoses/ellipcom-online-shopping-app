@@ -12,10 +12,10 @@ import com.ellipcom.ellipcom.diffUtil.MainCategoryDiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class MainHomeFragmentCategoryAdapter :
+class MainHomeFragmentCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
     RecyclerView.Adapter<MainHomeFragmentCategoryAdapter.ProductsViewHolder>() {
 
-    private var oldProductList = ArrayList<CategoryModel>()
+
 
     class ProductsViewHolder(val categoryItemBinding: MainCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(categoryItemBinding.root)
@@ -38,6 +38,8 @@ class MainHomeFragmentCategoryAdapter :
         )
             .into(holder.categoryItemBinding.categoryImage)
 
+        holder.categoryItemBinding.cateName.text = oldProductList[position].categoryName
+
         holder.itemView.setOnClickListener {
             if (oldProductList[position].categoryName == "household"){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainHouseholdRecyclerViewSubCatFragment)
@@ -45,10 +47,10 @@ class MainHomeFragmentCategoryAdapter :
             else if (oldProductList[position].categoryName == "construction"){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainConstructionRecyclerviewFragment)
             }
-            else if (oldProductList[position].categoryName == "education"){
+            else if (oldProductList[position].categoryName == it.context.getString(R.string.educ_cat)){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainEducationRecyclerviewFragment)
             }
-            else if (oldProductList[position].categoryName == "medical"){
+            else if (oldProductList[position].categoryName == it.context.getString(R.string.medic_cat)){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainMedicalRecyclerViewForSubCatFragment)
             }
             else if (oldProductList[position].categoryName == "food_and_drinks"){
@@ -56,7 +58,7 @@ class MainHomeFragmentCategoryAdapter :
 
             }
             else{
-                Toast.makeText(it.context, "category missing", Toast.LENGTH_SHORT).show()
+                Toast.makeText(it.context, oldProductList[position].categoryName, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -66,13 +68,13 @@ class MainHomeFragmentCategoryAdapter :
         return oldProductList.size
     }
 
-    fun setData(newList: ArrayList<CategoryModel>) {
-        val diffUtil = MainHomeFragmentCategoryDiffUtil(
-            oldProductList,
-            newList
-        )
-        val diffResults = DiffUtil.calculateDiff(diffUtil)
-        oldProductList = newList
-        diffResults.dispatchUpdatesTo(this)
-    }
+//    fun setData(newList: ArrayList<CategoryModel>) {
+//        val diffUtil = MainHomeFragmentCategoryDiffUtil(
+//            oldProductList,
+//            newList
+//        )
+//        val diffResults = DiffUtil.calculateDiff(diffUtil)
+//        oldProductList = newList
+//        diffResults.dispatchUpdatesTo(this)
+//    }
 }

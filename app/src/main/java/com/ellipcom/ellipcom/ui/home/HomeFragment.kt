@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
 import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.R
-import com.ellipcom.ellipcom.adapter.MainCategoryAdapter
 import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentHomeBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
@@ -44,9 +43,10 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
     private lateinit var productList: ArrayList<ProductData>
 
-    private val categoryAdapter by lazy { MainHomeFragmentCategoryAdapter() }
+    private val categoryAdapter by lazy { MainHomeFragmentCategoryAdapter(categoryList) }
 
     private val productAdapter by lazy { MainHomeAppAdapter(this) }
+    private val productAdapter1 by lazy { MainHomeAppAdapter(this) }
 
     //firebase
     private lateinit var firebaseDb: FirebaseFirestore
@@ -97,6 +97,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
         allProductsRV = binding.recyclerViewHomeMain
         allProductsRV.setHasFixedSize(true)
         allProductsRV.layoutManager =  GridLayoutManager(context, 2)
+        allProductsRV.adapter = productAdapter1
+
 
         try {
             firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
@@ -117,7 +119,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
+                                productAdapter1.setData(productList)
                             }
                         }
 
@@ -129,11 +131,12 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachCategoryRvWithData() {
 
         categoryRV = binding.recyclerViewHomeCategory
         categoryRV.setHasFixedSize(true)
-        categoryRV.layoutManager = GridLayoutManager(context, 3)
+        categoryRV.layoutManager = GridLayoutManager(context,3)
         categoryList = ArrayList()
         categoryRV.adapter = categoryAdapter
 
@@ -141,7 +144,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
         try {
 
             firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
-                .document(EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
+                .document(
+                    EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
                 .collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_CATEGORY)
                 .addSnapshotListener { value, error ->
 
@@ -158,18 +162,19 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
                                 categoryList.add(product.document.toObject(CategoryModel::class.java))
 
-                                categoryAdapter.setData(categoryList)
-
 
                             }
                         }
 
                     }
+                    categoryAdapter.notifyDataSetChanged()
 
                 }
 
         }
-        catch (e: Exception){}
+        catch (e: Exception){
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

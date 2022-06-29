@@ -66,7 +66,6 @@ class MainConstructionRecyclerviewFragment : Fragment() {
             if (it != null) {
                 assigningMainConstructionRecyclerview(it)
 
-
             } else {
                 Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
             }
@@ -77,6 +76,7 @@ class MainConstructionRecyclerviewFragment : Fragment() {
     }
 
     private fun attachSubCategoryRVWithData() {
+
         subCategoriesRecyclerview = binding.constructionSubCatsRV
         subCategoriesRecyclerview.setHasFixedSize(true)
         subCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)

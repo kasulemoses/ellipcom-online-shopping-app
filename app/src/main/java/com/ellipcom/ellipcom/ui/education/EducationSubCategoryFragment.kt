@@ -295,7 +295,7 @@ class EducationSubCategoryFragment : Fragment() {
 
     private fun storingEducationSubcategoryViewId(educationViewId: String) {
         sharedViewModel.savingEducationViewId(educationViewId)
-        findNavController().navigate(R.id.action_educationSubCategoryFragment_to_mainEducationRecyclerviewFragment)
+        //findNavController().navigate(R.id.action_educationSubCategoryFragment_to_mainEducationRecyclerviewFragment)
     }
 
     private fun clickListenersForArts() {

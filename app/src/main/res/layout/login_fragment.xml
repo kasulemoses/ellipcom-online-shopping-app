@@ -83,52 +83,57 @@
             android:id="@+id/textedit_login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/small_text_size"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/frameLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInput_password" />
 
-    <ProgressBar
-        android:id="@+id/progressbar_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/btn_login"
-        app:layout_constraintLeft_toLeftOf="@id/btn_login"
-        app:layout_constraintRight_toRightOf="@id/btn_login"
-        app:layout_constraintTop_toTopOf="@id/btn_login" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
+    <FrameLayout
+        android:id="@+id/frameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textSize="17sp"
-        app:cornerRadius="5dp"
-        app:elevation="10dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/forgot_password" />
+        app:layout_constraintTop_toBottomOf="@id/forgot_password">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:elevation="10dp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            app:cornerRadius="5dp"
+            app:elevation="10dp" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
 
     <View
         android:id="@+id/divider"
@@ -138,9 +143,9 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:background="?android:attr/listDivider"
-        app:layout_constraintLeft_toLeftOf="@id/btn_login"
-        app:layout_constraintRight_toRightOf="@id/btn_login"
-        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        app:layout_constraintLeft_toLeftOf="@id/frameLogin"
+        app:layout_constraintRight_toRightOf="@id/frameLogin"
+        app:layout_constraintTop_toBottomOf="@id/frameLogin" />
 
     <TextView
         android:id="@+id/tv_login"
@@ -165,10 +170,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/login_with_google_image"
             android:layout_width="35dp"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_height="35dp"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/google_icon"
             app:civ_border_color="@color/white"
             app:civ_border_width="1dp" />

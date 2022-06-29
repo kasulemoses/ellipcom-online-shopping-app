@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -218,11 +218,6 @@
             app:destination="@id/navigation_categories"
             app:popUpTo="@id/householdSubCategoriesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_householdSubCategoriesFragment_to_mainHouseholdRecyclerViewSubCatFragment"
-            app:destination="@id/mainHouseholdRecyclerViewSubCatFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
 
     </fragment>
 
@@ -230,14 +225,7 @@
         android:id="@+id/educationSubCategoryFragment"
         android:name="com.ellipcom.ellipcom.ui.education.EducationSubCategoryFragment"
         android:label="fragment_education_sub_category"
-        tools:layout="@layout/fragment_education_sub_category">
-
-        <action
-            android:id="@+id/action_educationSubCategoryFragment_to_mainEducationRecyclerviewFragment"
-            app:destination="@id/mainEducationRecyclerviewFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_education_sub_category"/>
 
     <fragment
         android:id="@+id/constructionSubCategoriesFragment"
@@ -249,11 +237,6 @@
             app:destination="@id/navigation_categories"
             app:popUpTo="@id/constructionSubCategoriesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_constructionSubCategoriesFragment_to_mainConstructionRecyclerviewFragment"
-            app:destination="@id/mainConstructionRecyclerviewFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
 
     </fragment>
 
@@ -267,11 +250,6 @@
             app:destination="@id/navigation_categories"
             app:popUpTo="@id/healthCareSubCategoriesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_healthCareSubCategoriesFragment_to_mainMedicalRecyclerViewForSubCatFragment"
-            app:destination="@id/mainMedicalRecyclerViewForSubCatFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
 
     </fragment>
     <fragment
@@ -284,11 +262,6 @@
             app:destination="@id/navigation_categories"
             app:popUpTo="@id/foodAndDrinksSubCategoriesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_foodAndDrinksSubCategoriesFragment_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment"
-            app:destination="@id/mainFoodAndDrinksRecyclerviewForSubcatsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
 
     </fragment>
 

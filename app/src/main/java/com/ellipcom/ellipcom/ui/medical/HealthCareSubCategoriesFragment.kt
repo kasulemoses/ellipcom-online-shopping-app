@@ -203,7 +203,7 @@ class HealthCareSubCategoriesFragment : Fragment() {
 
     private fun storingMedicalSubCatToSharedViewModel(medicalSubCat: String) {
         sharedViewModel.savingMedicalSubCatViewId(medicalSubCat)
-        findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_mainMedicalRecyclerViewForSubCatFragment)
+       // findNavController().navigate(R.id.action_healthCareSubCategoriesFragment_to_mainMedicalRecyclerViewForSubCatFragment)
     }
 
     private fun settingBabyLove() {

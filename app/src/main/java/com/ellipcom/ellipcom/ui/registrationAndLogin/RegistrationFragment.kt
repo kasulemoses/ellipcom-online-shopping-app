@@ -92,10 +92,16 @@ class RegistrationFragment : Fragment() {
 
                 progressbarRegister.visibility = View.VISIBLE
                 btnRegister.visibility = View.GONE
+
+                val loginEmail = textEditRegisterEmail.text.toString().trim()
+                val loginPassword = textEditRegisterPassword.text.toString().trim()
+
                 insertUserToFirebaseDatabase(
-                    textEditRegisterEmail.text.toString(),
-                    textEditRegisterPassword.text.toString()
+                    loginEmail,
+                    loginPassword
                 )
+                Toast.makeText(context, textEditRegisterEmail.text.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, textEditRegisterPassword.text.toString(), Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -162,15 +168,12 @@ class RegistrationFragment : Fragment() {
 
                     //sendUserVerificationEmail()
 
-                } else {
-                    progressbarRegister.visibility = View.GONE
-                    btnRegister.visibility = View.VISIBLE
-                    Snackbar.make(
-                        btnRegister,
-                        "check connection and try again",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
                 }
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                progressbarRegister.visibility = View.GONE
+                btnRegister.visibility = View.VISIBLE
             }
 
     }

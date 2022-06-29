@@ -348,7 +348,7 @@ class HouseholdSubCategoriesFragment : Fragment() {
 
     private fun storingHouseholdSubCatToSharedViewModel(householdSubCat: String) {
         sharedViewModel.savingHouseholdSubCatViewId(householdSubCat)
-        findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_mainHouseholdRecyclerViewSubCatFragment)
+       // findNavController().navigate(R.id.action_householdSubCategoriesFragment_to_mainHouseholdRecyclerViewSubCatFragment)
     }
 
     private fun clickListenersForHomeAndOffices() {
