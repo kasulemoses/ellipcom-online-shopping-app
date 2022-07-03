@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import com.ellipcom.ellipcom.R
 
-enum class PasswordStrength private constructor(internal var resId: Int, color: Int) {
+enum class PasswordStrength(internal var resId: Int, color: Int) {
     WEAK(R.string.password_strength_weak, Color.RED),
     MEDIUM(R.string.password_strength_medium, Color.argb(255, 220, 185, 0)),
     STRONG(R.string.password_strength_strong, Color.GREEN),

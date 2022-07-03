@@ -86,8 +86,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
                     android:background="@color/blue_700"
                     android:orientation="horizontal">
 
@@ -165,6 +163,14 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/view_all_categories"
                 android:textColor="@color/blue_800"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/latest_best_selling_products"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView

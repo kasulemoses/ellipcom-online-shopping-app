@@ -16,9 +16,7 @@ class AddressNoteBookAdapter(
 
 
     class AddressNoteBookViewHolder(val addressNoteBookListBinding: AddressNoteBookListRecyclerViewBinding) :
-        RecyclerView.ViewHolder(addressNoteBookListBinding.root) {
-
-    }
+        RecyclerView.ViewHolder(addressNoteBookListBinding.root)
 
     override fun onCreateViewHolder(
         p0: ViewGroup,

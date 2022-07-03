@@ -5,55 +5,97 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.databinding.FragmentAllSubCategoriesBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AllSubCategoriesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllSubCategoriesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding:FragmentAllSubCategoriesBinding?=null
+    private val binding get() = _binding!!
+
+    private lateinit var householdNv:NestedScrollView
+    private lateinit var healthCareNv:NestedScrollView
+    private lateinit var educationNv:NestedScrollView
+    private lateinit var foodAndDrinksNv:NestedScrollView
+    private lateinit var constructionNv:NestedScrollView
+
+    /*
+    * household sub category recycler views initialising
+    * them
+    * */
+    private lateinit var catElectronicsRv:RecyclerView
+    private lateinit var catPhonesAndTabletsRv:RecyclerView
+    private lateinit var catHomeAndOfficeRv:RecyclerView
+    private lateinit var catComputingRv:RecyclerView
+    private lateinit var catFurnitureRv:RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        _binding = FragmentAllSubCategoriesBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_sub_categories, container, false)
+
+        bindingViews()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllSubCategoriesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllSubCategoriesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun bindingViews() {
+
+        householdNv = binding.householdCatsNv
+        healthCareNv = binding.healthCareCatsNv
+        educationNv = binding.educationCatsNv
+        foodAndDrinksNv = binding.foodAndDrinksNv
+        constructionNv = binding.constructionCatsNv
+
+
+
+
+        binding.householdMainCat.setOnClickListener {
+            householdNv.visibility = View.VISIBLE
+            healthCareNv.visibility = View.GONE
+            educationNv.visibility = View.GONE
+            foodAndDrinksNv.visibility = View.GONE
+            constructionNv.visibility = View.GONE
+        }
+
+        binding.healthCareMainCat.setOnClickListener {
+            householdNv.visibility = View.GONE
+            healthCareNv.visibility = View.VISIBLE
+            educationNv.visibility = View.GONE
+            foodAndDrinksNv.visibility = View.GONE
+            constructionNv.visibility = View.GONE
+        }
+
+        binding.educationMainCat.setOnClickListener {
+            householdNv.visibility = View.GONE
+            healthCareNv.visibility = View.GONE
+            educationNv.visibility = View.VISIBLE
+            foodAndDrinksNv.visibility = View.GONE
+            constructionNv.visibility = View.GONE
+        }
+
+        binding.foodAndDrinksMainCat.setOnClickListener {
+
+            householdNv.visibility = View.GONE
+            healthCareNv.visibility = View.GONE
+            educationNv.visibility = View.GONE
+            foodAndDrinksNv.visibility = View.VISIBLE
+            constructionNv.visibility = View.GONE
+        }
+
+        binding.constructionMainCat.setOnClickListener {
+            householdNv.visibility = View.GONE
+            healthCareNv.visibility = View.GONE
+            educationNv.visibility = View.GONE
+            foodAndDrinksNv.visibility = View.GONE
+            constructionNv.visibility = View.VISIBLE
+        }
     }
+
+
 }

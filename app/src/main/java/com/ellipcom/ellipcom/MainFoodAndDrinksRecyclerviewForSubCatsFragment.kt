@@ -1,5 +1,6 @@
 package com.ellipcom.ellipcom
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.ellipcom.ellipcom.databinding.FragmentMainFoodAndDrinksRecyclerviewFo
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.foodAndDrinks.FoodAndDrinksProductAdapter
 import com.ellipcom.ellipcom.ui.foodAndDrinks.FoodAndDrinksSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -40,8 +42,8 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MainAppAdapter() }
-    private val subCategoryAdapter by lazy { FoodAndDrinksSubCategoryAdapter() }
+    private val productAdapter by lazy { FoodAndDrinksProductAdapter(productList) }
+    private val subCategoryAdapter by lazy { FoodAndDrinksSubCategoryAdapter(subCategoryList) }
 
 
     override fun onCreateView(
@@ -64,24 +66,25 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
         mainFoodAndDrinkRecyclerview.adapter = productAdapter
 
         attachSubCategoryRVWithData()
-
+        assigningMainFoodAndDrinksRecyclerview()
         //shared view model
-        sharedViewModel.educationViewId.observe(viewLifecycleOwner) {
-            if (it != null) {
-                assigningMainFoodAndDrinksRecyclerview(it)
-            } else {
-                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
-            }
-
-        }
+//        sharedViewModel.educationViewId.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//
+//            } else {
+//                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
 
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachSubCategoryRVWithData() {
         subCategoryRecyclerview = binding.foodAndDrinksSubCatsRV
         subCategoryRecyclerview.setHasFixedSize(true)
-        subCategoryRecyclerview.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+        subCategoryRecyclerview.layoutManager = GridLayoutManager(context, 1, RecyclerView.HORIZONTAL, true)
 
         subCategoryList = ArrayList()
 
@@ -106,19 +109,19 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
 
                                 subCategoryList.add(product.document.toObject(CategoryModel::class.java))
 
-                                subCategoryAdapter.setData(subCategoryList)
                             }
                         }
 
                     }
-
+                    subCategoryAdapter.notifyDataSetChanged()
                 }
         }
         catch (e: Exception){}
 
     }
 
-    private fun assigningMainFoodAndDrinksRecyclerview(foodAndDrinkSubCat: String) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun assigningMainFoodAndDrinksRecyclerview() {
         try {
             fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
                 .document(EllipcomAppConstants.ELLIPCOM_APP_FOOD_AND_DRINKS)
@@ -138,12 +141,11 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
                             }
                         }
 
                     }
-
+                    productAdapter.notifyDataSetChanged()
                 }
         }catch (e:Exception){
 

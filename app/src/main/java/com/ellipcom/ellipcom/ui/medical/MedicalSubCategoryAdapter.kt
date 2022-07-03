@@ -9,10 +9,10 @@ import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class MedicalSubCategoryAdapter :
+class MedicalSubCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
     RecyclerView.Adapter<MedicalSubCategoryAdapter.ProductsViewHolder>() {
 
-    private var oldProductList = ArrayList<CategoryModel>()
+
 
     class ProductsViewHolder(val productItemBinding: MainCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
@@ -34,7 +34,6 @@ class MedicalSubCategoryAdapter :
                 .categoryImageUrl
         )
             .placeholder(R.drawable.ic_launcher_foreground)
-            .centerCrop()
             .into(holder.productItemBinding.categoryImage)
 
     }
@@ -44,13 +43,4 @@ class MedicalSubCategoryAdapter :
         return oldProductList.size
     }
 
-    fun setData(newList: ArrayList<CategoryModel>) {
-        val diffUtil = MedicalSubCategoryDiffUtil(
-            oldProductList,
-            newList
-        )
-        val diffResults = DiffUtil.calculateDiff(diffUtil)
-        oldProductList = newList
-        diffResults.dispatchUpdatesTo(this)
-    }
 }

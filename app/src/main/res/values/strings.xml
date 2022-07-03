@@ -310,7 +310,7 @@
     <string name="pampers_and_diapers">pampers and diapers</string>
     <string name="medical_services">Medical services</string>
     <string name="herbal_and_syrups__">Herbal and syrups</string>
-    <string name="let_us_find_something">let us find something</string>
+    <string name="let_us_find_something">let us find something for you</string>
     <string name="explore_the_main_category">Explore the main category</string>
     <string name="view_all_categories">View all categories</string>
     <string name="categories">categories</string>
@@ -321,4 +321,6 @@
         very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.. comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</string>
     <string name="medic_cat">medical</string>
     <string name="educ_cat">education</string>
+    <string name="latest_best_selling_products">Latest best selling products</string>
+    <string name="restuarant">Restuarant</string>
 </resources>

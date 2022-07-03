@@ -1,5 +1,6 @@
 package com.ellipcom.ellipcom
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
@@ -14,6 +16,7 @@ import com.ellipcom.ellipcom.databinding.FragmentMainEducationRecyclerviewBindin
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.education.EducationProductAdapter
 import com.ellipcom.ellipcom.ui.education.EducationSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -35,8 +38,8 @@ class MainEducationRecyclerviewFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var educSubCategoriesList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MainAppAdapter() }
-    private val educSubCategoriesAdapter by lazy { EducationSubCategoryAdapter() }
+    private val productAdapter by lazy { EducationProductAdapter(productList) }
+    private val educSubCategoriesAdapter by lazy { EducationSubCategoryAdapter(educSubCategoriesList) }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -56,25 +59,31 @@ class MainEducationRecyclerviewFragment : Fragment() {
         productList = ArrayList()
         mainEducationRecyclerview.adapter = productAdapter
 
+        binding.categoryImageBack.setOnClickListener {
+            findNavController().navigate(R.id.action_mainEducationRecyclerviewFragment_to_navigation_home)
+        }
+
         attachSubCategoryRVWithData()
+        assigningMainConstructionRecyclerview()
 
         //shared view model
-        sharedViewModel.educationViewId.observe(viewLifecycleOwner) {
-            if (it != null) {
-                assigningMainConstructionRecyclerview(it)
-            } else {
-                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
-            }
-
-        }
+//        sharedViewModel.educationViewId.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//
+//            } else {
+//                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
 
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachSubCategoryRVWithData() {
         educationSubCategoriesRecyclerview = binding.educationSubCatsRV
         educationSubCategoriesRecyclerview.setHasFixedSize(true)
-        educationSubCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+        educationSubCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 1, RecyclerView.HORIZONTAL, true)
 
         educSubCategoriesList = ArrayList()
 
@@ -99,11 +108,11 @@ class MainEducationRecyclerviewFragment : Fragment() {
 
                                 educSubCategoriesList.add(product.document.toObject(CategoryModel::class.java))
 
-                                educSubCategoriesAdapter.setData(educSubCategoriesList)
                             }
                         }
 
                     }
+                    educSubCategoriesAdapter.notifyDataSetChanged()
 
                 }
         }
@@ -111,7 +120,8 @@ class MainEducationRecyclerviewFragment : Fragment() {
 
     }
 
-    private fun assigningMainConstructionRecyclerview(educationViewId: String) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun assigningMainConstructionRecyclerview() {
 
         try {
             fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
@@ -132,13 +142,13 @@ class MainEducationRecyclerviewFragment : Fragment() {
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
+
                             }
                         }
 
                     }
 
-
+                    productAdapter.notifyDataSetChanged()
                 }
 
         }

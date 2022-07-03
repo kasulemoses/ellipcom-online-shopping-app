@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
 import com.ellipcom.ellipcom.Interface.OnProductClickListener
@@ -45,8 +44,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
     private val categoryAdapter by lazy { MainHomeFragmentCategoryAdapter(categoryList) }
 
-    private val productAdapter by lazy { MainHomeAppAdapter(this) }
-    private val productAdapter1 by lazy { MainHomeAppAdapter(this) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList,this) }
+    private val productAdapter1 by lazy { MainHomeAppAdapter(productList,this) }
 
     //firebase
     private lateinit var firebaseDb: FirebaseFirestore
@@ -78,7 +77,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
         firebaseDb = FirebaseFirestore.getInstance()
 
         imageCarouselSettings()
-        recyclerview1()
+        allRecentHomeProduct()
 
         attachCategoryRvWithData()
         attachAllProductRvWithData()
@@ -91,6 +90,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachAllProductRvWithData() {
         productList = ArrayList()
 
@@ -119,11 +119,11 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter1.setData(productList)
                             }
                         }
 
                     }
+                    productAdapter1.notifyDataSetChanged()
 
                 }
         }
@@ -178,7 +178,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun recyclerview1() {
+    private fun allRecentHomeProduct() {
 
         recyclerview1 = binding.homeRecyclerView1
         recyclerview1.layoutManager = GridLayoutManager(context, 2)

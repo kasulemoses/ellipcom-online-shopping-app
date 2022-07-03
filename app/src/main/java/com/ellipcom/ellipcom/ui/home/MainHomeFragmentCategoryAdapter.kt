@@ -12,7 +12,7 @@ import com.ellipcom.ellipcom.diffUtil.MainCategoryDiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class MainHomeFragmentCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
+class MainHomeFragmentCategoryAdapter(private val oldProductList:ArrayList<CategoryModel>) :
     RecyclerView.Adapter<MainHomeFragmentCategoryAdapter.ProductsViewHolder>() {
 
 
@@ -36,24 +36,25 @@ class MainHomeFragmentCategoryAdapter(private var oldProductList:ArrayList<Categ
             oldProductList[position]
                 .categoryImageUrl
         )
+            .placeholder(R.drawable.ic_launcher_background)
             .into(holder.categoryItemBinding.categoryImage)
 
         holder.categoryItemBinding.cateName.text = oldProductList[position].categoryName
 
         holder.itemView.setOnClickListener {
-            if (oldProductList[position].categoryName == "household"){
+            if (oldProductList[position].categoryName!!.uppercase() == "household".uppercase()){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainHouseholdRecyclerViewSubCatFragment)
             }
-            else if (oldProductList[position].categoryName == "construction"){
+            else if (oldProductList[position].categoryName!!.uppercase() == "construction".uppercase()){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainConstructionRecyclerviewFragment)
             }
-            else if (oldProductList[position].categoryName == it.context.getString(R.string.educ_cat)){
+            else if (oldProductList[position].categoryName!!.uppercase() == it.context.getString(R.string.educ_cat).uppercase()){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainEducationRecyclerviewFragment)
             }
-            else if (oldProductList[position].categoryName == it.context.getString(R.string.medic_cat)){
+            else if (oldProductList[position].categoryName!!.uppercase() == "medical".uppercase()){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainMedicalRecyclerViewForSubCatFragment)
             }
-            else if (oldProductList[position].categoryName == "food_and_drinks"){
+            else if (oldProductList[position].categoryName!!.uppercase() == "food and drinks".uppercase()){
                 it.findNavController().navigate(R.id.action_navigation_home_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment)
 
             }

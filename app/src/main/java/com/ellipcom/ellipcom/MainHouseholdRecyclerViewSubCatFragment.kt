@@ -1,5 +1,6 @@
 package com.ellipcom.ellipcom
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.ellipcom.ellipcom.databinding.FragmentMainHouseholdRecyclerViewSubCat
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.houshold.HouseholdProductAdapter
 import com.ellipcom.ellipcom.ui.houshold.HouseholdSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -37,8 +40,8 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MainAppAdapter() }
-    private val subCategoryAdapter by lazy { HouseholdSubCategoryAdapter() }
+    private val productAdapter by lazy { HouseholdProductAdapter(productList) }
+    private val subCategoryAdapter by lazy { HouseholdSubCategoryAdapter(subCategoryList) }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -53,32 +56,38 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
         fireDb = FirebaseFirestore.getInstance()
         mainHouseholdRecyclerview = binding.mainHouseholdSubCatRv
         mainHouseholdRecyclerview.setHasFixedSize(true)
-        mainHouseholdRecyclerview.layoutManager = LinearLayoutManager(context)
+        mainHouseholdRecyclerview.layoutManager = GridLayoutManager(context,2)
 
         productList = ArrayList()
         mainHouseholdRecyclerview.adapter = productAdapter
 
+        binding.categoryImageBack.setOnClickListener {
+            findNavController().navigate(R.id.action_mainHouseholdRecyclerViewSubCatFragment_to_navigation_home)
+        }
+
         attachSubCategoryRVWithData()
+        assigningMainHouseholdRecyclerview()
 
         //shared view model
-        sharedViewModel.householdSubCatViewId.observe(viewLifecycleOwner) {
-            if (it != null) {
-                assigningMainHouseholdRecyclerview(it)
-
-
-            } else {
-                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
-            }
-
-        }
+//        sharedViewModel.householdSubCatViewId.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//                assigningMainHouseholdRecyclerview(it)
+//
+//
+//            } else {
+//                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
 
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachSubCategoryRVWithData() {
         subCategoryRv = binding.householdSubCats
         subCategoryRv.setHasFixedSize(true)
-        subCategoryRv.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+        subCategoryRv.layoutManager = GridLayoutManager(context, 1, RecyclerView.HORIZONTAL, true)
 
         subCategoryList = ArrayList()
 
@@ -103,24 +112,24 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
 
                                 subCategoryList.add(product.document.toObject(CategoryModel::class.java))
 
-                                subCategoryAdapter.setData(subCategoryList)
+
                             }
                         }
 
                     }
-
+                    subCategoryAdapter.notifyDataSetChanged()
                 }
         }
         catch (e: Exception){}
 
     }
 
-    private fun assigningMainHouseholdRecyclerview(householdSubCat: String) {
-        Toast.makeText(context, householdSubCat, Toast.LENGTH_SHORT).show()
+    @SuppressLint("NotifyDataSetChanged")
+    private fun assigningMainHouseholdRecyclerview() {
         try {
             fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
                 .document(EllipcomAppConstants.ELLIPCOM_APP_HOUSEHOLD)
-                .collection(EllipcomAppConstants.ALL_HOUSEHOLD_PRODUCT)
+                .collection("All_household_products")
                 .addSnapshotListener { value, error ->
 
                     if (error != null) {
@@ -136,11 +145,11 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
                             }
                         }
 
                     }
+                    productAdapter.notifyDataSetChanged()
 
                 }
 

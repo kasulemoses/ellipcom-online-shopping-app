@@ -1,5 +1,6 @@
 package com.ellipcom.ellipcom
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.ellipcom.ellipcom.databinding.FragmentMainMedicalRecyclerViewForSubCa
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.medical.MedicalProductAdapter
 import com.ellipcom.ellipcom.ui.medical.MedicalSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -36,8 +38,8 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MainAppAdapter() }
-    private val subCategoryAdapter by lazy { MedicalSubCategoryAdapter() }
+    private val productAdapter by lazy { MedicalProductAdapter(productList) }
+    private val subCategoryAdapter by lazy { MedicalSubCategoryAdapter(subCategoryList) }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -60,24 +62,26 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
         mainMedicalRecyclerview.adapter = productAdapter
 
         attachSubCategoryRVWithData()
+        assigningMainMedicalRecyclerview()
 
         //shared view model
-        sharedViewModel.medicalSubCatViewId.observe(viewLifecycleOwner) {
-            if (it != null) {
-                assigningMainMedicalRecyclerview(it)
-            } else {
-                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
-            }
-
-        }
+//        sharedViewModel.medicalSubCatViewId.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//
+//            } else {
+//                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
 
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachSubCategoryRVWithData() {
         subCategoryRv = binding.medicalSubCatsRV
         subCategoryRv.setHasFixedSize(true)
-        subCategoryRv.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+        subCategoryRv.layoutManager = GridLayoutManager(context, 1, RecyclerView.HORIZONTAL, true)
 
         subCategoryList = ArrayList()
 
@@ -102,11 +106,11 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
 
                                 subCategoryList.add(product.document.toObject(CategoryModel::class.java))
 
-                                subCategoryAdapter.setData(subCategoryList)
                             }
                         }
 
                     }
+                    subCategoryAdapter.notifyDataSetChanged()
 
                 }
         }
@@ -115,7 +119,8 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
     }
 
 
-    private fun assigningMainMedicalRecyclerview(medicalSubCat: String) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun assigningMainMedicalRecyclerview() {
 
         try {
             fireDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
@@ -136,12 +141,11 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
                             }
                         }
 
                     }
-
+                    productAdapter.notifyDataSetChanged()
                 }
 
         }

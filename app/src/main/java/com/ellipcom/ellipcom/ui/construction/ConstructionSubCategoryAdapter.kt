@@ -16,10 +16,10 @@ import com.ellipcom.ellipcom.model.ProductData
 import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.squareup.picasso.Picasso
 
-class ConstructionSubCategoryAdapter :
+class ConstructionSubCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
     RecyclerView.Adapter<ConstructionSubCategoryAdapter.ProductsViewHolder>() {
 
-    private var oldProductList = ArrayList<CategoryModel>()
+
 
     class ProductsViewHolder(val productItemBinding: MainCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
@@ -41,7 +41,6 @@ class ConstructionSubCategoryAdapter :
                 .categoryImageUrl
         )
             .placeholder(R.drawable.ic_launcher_foreground)
-            .centerCrop()
             .into(holder.productItemBinding.categoryImage)
 
     }
@@ -51,13 +50,4 @@ class ConstructionSubCategoryAdapter :
         return oldProductList.size
     }
 
-    fun setData(newList: ArrayList<CategoryModel>) {
-        val diffUtil = ConstructionSubCategoryDiffUtil(
-            oldProductList,
-            newList
-        )
-        val diffResults = DiffUtil.calculateDiff(diffUtil)
-        oldProductList = newList
-        diffResults.dispatchUpdatesTo(this)
-    }
 }

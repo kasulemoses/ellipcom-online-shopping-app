@@ -9,10 +9,10 @@ import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class HouseholdSubCategoryAdapter :
+class HouseholdSubCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
     RecyclerView.Adapter<HouseholdSubCategoryAdapter.ProductsViewHolder>() {
 
-    private var oldProductList = ArrayList<CategoryModel>()
+
 
     class ProductsViewHolder(val productItemBinding: MainCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
@@ -34,7 +34,6 @@ class HouseholdSubCategoryAdapter :
                 .categoryImageUrl
         )
             .placeholder(R.drawable.ic_launcher_foreground)
-            .centerCrop()
             .into(holder.productItemBinding.categoryImage)
 
     }
@@ -44,13 +43,13 @@ class HouseholdSubCategoryAdapter :
         return oldProductList.size
     }
 
-    fun setData(newList: ArrayList<CategoryModel>) {
-        val diffUtil = HouseholdSubCategoryDiffUtil(
-            oldProductList,
-            newList
-        )
-        val diffResults = DiffUtil.calculateDiff(diffUtil)
-        oldProductList = newList
-        diffResults.dispatchUpdatesTo(this)
-    }
+//    fun setData(newList: ArrayList<CategoryModel>) {
+//        val diffUtil = HouseholdSubCategoryDiffUtil(
+//            oldProductList,
+//            newList
+//        )
+//        val diffResults = DiffUtil.calculateDiff(diffUtil)
+//        oldProductList = newList
+//        diffResults.dispatchUpdatesTo(this)
+//    }
 }

@@ -18,9 +18,7 @@ class BottomNavCartAdapter(private val cartList: ArrayList<ProductCartModel>) :
 
 
     class BottomNavViewHolder(val itemsListBinding: ProductCartRecyclerItemsListBinding) :
-        RecyclerView.ViewHolder(itemsListBinding.root) {
-
-    }
+        RecyclerView.ViewHolder(itemsListBinding.root)
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): BottomNavViewHolder {
         return BottomNavViewHolder(

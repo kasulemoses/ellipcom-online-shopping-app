@@ -1,5 +1,6 @@
 package com.ellipcom.ellipcom
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.ellipcom.ellipcom.databinding.FragmentMainConstructionRecyclerviewBin
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
+import com.ellipcom.ellipcom.ui.construction.ConstructionProductAdapter
 import com.ellipcom.ellipcom.ui.construction.ConstructionSubCategoryAdapter
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -37,8 +39,8 @@ class MainConstructionRecyclerviewFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoriesList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MainAppAdapter() }
-    private val subCategoriesAdapter by lazy { ConstructionSubCategoryAdapter() }
+    private val productAdapter by lazy { ConstructionProductAdapter(productList) }
+    private val subCategoriesAdapter by lazy { ConstructionSubCategoryAdapter(subCategoriesList) }
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -53,7 +55,7 @@ class MainConstructionRecyclerviewFragment : Fragment() {
         fireDb = FirebaseFirestore.getInstance()
         mainConstructionRecyclerview = binding.mainConstRecycler
         mainConstructionRecyclerview.setHasFixedSize(true)
-        mainConstructionRecyclerview.layoutManager = LinearLayoutManager(context)
+        mainConstructionRecyclerview.layoutManager = GridLayoutManager(context,2)
 
         productList = ArrayList()
         mainConstructionRecyclerview.adapter = productAdapter
@@ -75,11 +77,12 @@ class MainConstructionRecyclerviewFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun attachSubCategoryRVWithData() {
 
         subCategoriesRecyclerview = binding.constructionSubCatsRV
         subCategoriesRecyclerview.setHasFixedSize(true)
-        subCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, true)
+        subCategoriesRecyclerview.layoutManager = GridLayoutManager(context, 1, RecyclerView.HORIZONTAL, true)
 
         subCategoriesList = ArrayList()
 
@@ -104,18 +107,18 @@ class MainConstructionRecyclerviewFragment : Fragment() {
 
                                 subCategoriesList.add(product.document.toObject(CategoryModel::class.java))
 
-                                subCategoriesAdapter.setData(subCategoriesList)
                             }
                         }
 
                     }
-
+                    subCategoriesAdapter.notifyDataSetChanged()
                 }
         }
         catch (e:Exception){}
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun assigningMainConstructionRecyclerview(subCategoryViewId: String) {
 
         try {
@@ -137,12 +140,11 @@ class MainConstructionRecyclerviewFragment : Fragment() {
 
                                 productList.add(product.document.toObject(ProductData::class.java))
 
-                                productAdapter.setData(productList)
                             }
                         }
 
                     }
-
+                    productAdapter.notifyDataSetChanged()
                 }
         }
         catch (e:Exception){}
