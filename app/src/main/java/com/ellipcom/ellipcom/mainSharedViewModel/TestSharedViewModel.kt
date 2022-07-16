@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ellipcom.ellipcom.model.DetailPdtModel
 
-class AppMainSharedViewModel : ViewModel() {
+class TestSharedViewModel : ViewModel() {
 
     //working on the product id
     private var _productId = MutableLiveData("1")
@@ -91,12 +91,12 @@ class AppMainSharedViewModel : ViewModel() {
         _electronicsSubDetails.value = sPd
 
     }
-//    private var _phonesAndTabletsSubDetails = MutableLiveData("1")
-//    var phonesAndTabletsSubDetails:LiveData<String> = _phonesAndTabletsSubDetails
-//    fun savingPhoneAndTabletSubPdtDetails(sPd1:String){
-//        _phonesAndTabletsSubDetails.value = sPd1
-//
-//    }
+    private var _phonesAndTabletsSubDetails = MutableLiveData("1")
+    var phonesAndTabletsSubDetails:LiveData<String> = _phonesAndTabletsSubDetails
+    fun savingPhoneAndTabletSubPdtDetails(sPd1:String){
+        _phonesAndTabletsSubDetails.value = sPd1
+
+    }
 
     private var _homeAndOfficeSubDetails = MutableLiveData("2")
     var homeAndOfficeSubDetails:LiveData<String> = _homeAndOfficeSubDetails

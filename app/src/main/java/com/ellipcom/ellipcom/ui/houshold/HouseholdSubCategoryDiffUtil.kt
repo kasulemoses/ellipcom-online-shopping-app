@@ -2,8 +2,6 @@ package com.ellipcom.ellipcom.ui.houshold
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
-import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
 
 class HouseholdSubCategoryDiffUtil(
     private val oldList: ArrayList<CategoryModel>,

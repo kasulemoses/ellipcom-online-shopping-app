@@ -69,13 +69,4 @@ class MainHomeFragmentCategoryAdapter(private val oldProductList:ArrayList<Categ
         return oldProductList.size
     }
 
-//    fun setData(newList: ArrayList<CategoryModel>) {
-//        val diffUtil = MainHomeFragmentCategoryDiffUtil(
-//            oldProductList,
-//            newList
-//        )
-//        val diffResults = DiffUtil.calculateDiff(diffUtil)
-//        oldProductList = newList
-//        diffResults.dispatchUpdatesTo(this)
-//    }
 }

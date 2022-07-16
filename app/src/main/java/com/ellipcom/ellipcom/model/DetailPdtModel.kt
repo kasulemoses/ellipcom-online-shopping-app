@@ -1,6 +1,6 @@
 package com.ellipcom.ellipcom.model
 
-data class ProductInformationModel(
+data class DetailPdtModel(
     val productId: String? = null,
     val productName: String? = null,
     val productImageUrl: String? = null,

@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainEducationRecyclerviewBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
@@ -23,7 +24,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MainEducationRecyclerviewFragment : Fragment() {
+class MainEducationRecyclerviewFragment : Fragment(), OnProductClickListener {
 
     private var _binding: FragmentMainEducationRecyclerviewBinding? = null
     private val binding get() = _binding!!
@@ -38,7 +39,7 @@ class MainEducationRecyclerviewFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var educSubCategoriesList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { EducationProductAdapter(productList) }
+    private val productAdapter by lazy { EducationProductAdapter(productList,this) }
     private val educSubCategoriesAdapter by lazy { EducationSubCategoryAdapter(educSubCategoriesList) }
 
     //shared view model
@@ -155,6 +156,12 @@ class MainEducationRecyclerviewFragment : Fragment() {
         catch (e:Exception){}
 
 
+    }
+
+    override fun onProductItemClick(position: Int) {
+        val dPdtDetails = productAdapter.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+        findNavController().navigate(R.id.action_mainEducationRecyclerviewFragment_to_productDetailsFragment)
     }
 
 

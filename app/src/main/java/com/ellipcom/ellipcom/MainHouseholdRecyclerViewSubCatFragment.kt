@@ -12,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
+import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainHouseholdRecyclerViewSubCatBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
@@ -25,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.lang.Exception
 
 
-class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
+class MainHouseholdRecyclerViewSubCatFragment : Fragment() , OnProductClickListener {
 
     private var _binding: FragmentMainHouseholdRecyclerViewSubCatBinding? = null
     private val binding get() = _binding!!
@@ -40,7 +42,7 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { HouseholdProductAdapter(productList) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList,this) }
     private val subCategoryAdapter by lazy { HouseholdSubCategoryAdapter(subCategoryList) }
 
     //shared view model
@@ -156,6 +158,12 @@ class MainHouseholdRecyclerViewSubCatFragment : Fragment() {
         }
         catch (e:Exception){}
 
+    }
+
+    override fun onProductItemClick(position: Int) {
+        val dPdtDetails = productAdapter.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+        findNavController().navigate(R.id.action_mainHouseholdRecyclerViewSubCatFragment_to_productDetailsFragment)
     }
 
 

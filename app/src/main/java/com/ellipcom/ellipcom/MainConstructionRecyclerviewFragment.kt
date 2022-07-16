@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
+import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainConstructionRecyclerviewBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
@@ -24,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.lang.Exception
 
 
-class MainConstructionRecyclerviewFragment : Fragment() {
+class MainConstructionRecyclerviewFragment : Fragment(), OnProductClickListener {
 
     private var _binding: FragmentMainConstructionRecyclerviewBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +42,8 @@ class MainConstructionRecyclerviewFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoriesList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { ConstructionProductAdapter(productList) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList, this) }
+
     private val subCategoriesAdapter by lazy { ConstructionSubCategoryAdapter(subCategoriesList) }
 
     //shared view model
@@ -152,7 +156,11 @@ class MainConstructionRecyclerviewFragment : Fragment() {
 
 
     }
-
+    override fun onProductItemClick(position: Int) {
+        val dPdtDetails = productAdapter.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+        findNavController().navigate(R.id.action_mainConstructionRecyclerviewFragment_to_productDetailsFragment)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

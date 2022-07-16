@@ -41,7 +41,7 @@
                     android:padding="10dp"
                     android:text="@string/sale"
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
             </com.google.android.material.card.MaterialCardView>
 
         </FrameLayout>
@@ -56,7 +56,7 @@
             android:fontFamily="sans-serif-condensed"
             android:maxLines="1"
             android:textColor="#272626"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
 
         <LinearLayout

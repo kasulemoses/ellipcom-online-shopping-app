@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.databinding.ProductCartRecyclerItemsListBinding
@@ -33,6 +34,8 @@ class BottomNavCartAdapter(private val cartList: ArrayList<ProductCartModel>) :
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(p0: BottomNavViewHolder, p1: Int) {
+
+
         p0.itemsListBinding.cartProductName.text = cartList[p1].cartProductName
         p0.itemsListBinding.cartProductPrice.text = cartList[p1].cartProductPrice
         p0.itemsListBinding.cartProductRegularPrice.text = cartList[p1].cartProductRegularPrice
@@ -64,6 +67,7 @@ class BottomNavCartAdapter(private val cartList: ArrayList<ProductCartModel>) :
                     .document(cartList[p1].cartProductId.toString())
                     .delete()
                     .addOnSuccessListener {
+
                         Snackbar.make(
                             p0.itemsListBinding.linearDeleteCartProduct,
                             "${cartList[p1].cartProductName} is removed",
@@ -85,6 +89,7 @@ class BottomNavCartAdapter(private val cartList: ArrayList<ProductCartModel>) :
             alertDialog.show()
         }
     }
+
 
     override fun getItemCount(): Int {
         return cartList.size

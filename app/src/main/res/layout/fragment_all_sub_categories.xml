@@ -20,19 +20,27 @@
             android:layout_height="?attr/actionBarSize">
 
             <LinearLayout
-                android:id="@+id/category_image_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 tools:ignore="UseCompoundDrawables">
 
-                <ImageView
-                    android:id="@+id/image_detail_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_outline_arrow_back_24"
-                    app:tint="@color/white" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sub_category_image_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_800"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/image_detail_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_outline_arrow_back_24"
+                        app:tint="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,6 +61,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -77,9 +86,9 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:clickable="true"
                         android:elevation="4dp"
                         android:focusable="true">
 
@@ -92,26 +101,27 @@
                             tools:ignore="UseCompoundDrawables">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/household_image"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/test_v1" />
 
                             <TextView
+                                android:id="@+id/tv_household"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/household"
-                                android:textStyle="bold" />
+                                android:text="@string/household" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:clickable="true"
                         android:elevation="4dp"
                         android:focusable="true">
 
@@ -124,26 +134,27 @@
                             tools:ignore="UseCompoundDrawables">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/health_care_image"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/test_v1" />
 
                             <TextView
+                                android:id="@+id/health_care_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/health_care"
-                                android:textStyle="bold" />
+                                android:text="@string/health_care" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:clickable="true"
                         android:elevation="4dp"
                         android:focusable="true">
 
@@ -156,26 +167,27 @@
                             tools:ignore="UseCompoundDrawables">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/education_image"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/test_v1" />
 
                             <TextView
+                                android:id="@+id/education_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/education"
-                                android:textStyle="bold" />
+                                android:text="@string/education" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:clickable="true"
                         android:elevation="4dp"
                         android:focusable="true">
 
@@ -188,17 +200,18 @@
                             tools:ignore="UseCompoundDrawables">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/restaurant_image"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/test_v1" />
 
                             <TextView
+                                android:id="@+id/restaurant_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/restuarant"
-                                android:textStyle="bold" />
+                                android:text="@string/restuarant" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -220,17 +233,18 @@
                             tools:ignore="UseCompoundDrawables">
 
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:id="@+id/construction_image"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/test_v1" />
 
                             <TextView
+                                android:id="@+id/construction_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/construction"
-                                android:textStyle="bold" />
+                                android:text="@string/construction" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -262,7 +276,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/electronics"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -275,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/phones_and_tablets"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -288,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/home_and_office"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -301,7 +315,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/computing"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -314,14 +328,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/furniture"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cat_furniture_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
@@ -343,7 +356,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/home_medicine"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -356,7 +369,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/personal_care"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -369,7 +382,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/baby_love"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -382,7 +395,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/sexual_and_reproductive_health"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -395,14 +408,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/medical_services"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cat_medical_services_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
@@ -424,7 +436,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/science"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -437,7 +449,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/art"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -450,7 +462,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/primary"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -463,14 +475,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/services"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cat_education_services_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
@@ -492,7 +503,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/food"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -505,14 +516,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/drinks"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cat_drinks_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
@@ -534,7 +544,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/safety_gear"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -547,7 +557,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/building_tools"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -560,20 +570,22 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/construction_materials"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cat_construction_materials_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="TooManyViews" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/plumbing_materials"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -586,7 +598,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/electrical_materials"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -599,7 +611,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/carpentry_tools"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -612,7 +624,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/construction_equipment"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -625,7 +637,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/technical_services"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -633,15 +645,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
 
-
         </LinearLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

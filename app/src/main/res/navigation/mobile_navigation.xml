@@ -21,11 +21,6 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
         <action
-            android:id="@+id/action_navigation_home_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment"
-            app:destination="@id/mainFoodAndDrinksRecyclerviewForSubcatsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
-        <action
             android:id="@+id/action_navigation_home_to_mainHouseholdRecyclerViewSubCatFragment"
             app:destination="@id/mainHouseholdRecyclerViewSubCatFragment"
             app:enterAnim="@android:anim/slide_in_left"
@@ -40,6 +35,12 @@
             app:destination="@id/mainMedicalRecyclerViewForSubCatFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_home_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_mainFoodAndDrinksRecyclerviewForSubcatsFragment"
+            app:destination="@id/mainFoodAndDrinksRecyclerviewForSubcatsFragment" />
     </fragment>
 
     <fragment
@@ -159,15 +160,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/detailProductFragment"
-        android:name="com.ellipcom.ellipcom.ui.productDetailFragment.DetailProductFragment"
-        android:label="detail_product_fragment"
-        tools:layout="@layout/detail_product_fragment">
-        <argument
-            android:name="productDetails"
-            app:argType="string" />
-    </fragment>
-    <fragment
         android:id="@+id/newCustomerAddressFragment"
         android:name="com.ellipcom.ellipcom.ui.customerAddresses.NewCustomerAddressFragment"
         android:label="new_customer_address_fragment"
@@ -275,6 +267,11 @@
             app:destination="@id/navigation_home"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainConstructionRecyclerviewFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/mainEducationRecyclerviewFragment"
@@ -286,17 +283,34 @@
             app:destination="@id/navigation_home"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_mainEducationRecyclerviewFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/mainFoodAndDrinksRecyclerviewForSubcatsFragment"
         android:name="com.ellipcom.ellipcom.MainFoodAndDrinksRecyclerviewForSubCatsFragment"
         android:label="fragment_main_food_and_drinks_recyclerview_for_subcats"
-        tools:layout="@layout/fragment_main_food_and_drinks_recyclerview_for_subcats" />
+        tools:layout="@layout/fragment_main_food_and_drinks_recyclerview_for_subcats" >
+        <action
+            android:id="@+id/action_mainFoodAndDrinksRecyclerviewForSubcatsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/mainMedicalRecyclerViewForSubCatFragment"
         android:name="com.ellipcom.ellipcom.MainMedicalRecyclerViewForSubCatFragment"
         android:label="fragment_main_medical_recycler_view_for_sub_cat"
-        tools:layout="@layout/fragment_main_medical_recycler_view_for_sub_cat" />
+        tools:layout="@layout/fragment_main_medical_recycler_view_for_sub_cat" >
+        <action
+            android:id="@+id/action_mainMedicalRecyclerViewForSubCatFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/mainHouseholdRecyclerViewSubCatFragment"
         android:name="com.ellipcom.ellipcom.MainHouseholdRecyclerViewSubCatFragment"
@@ -307,11 +321,83 @@
             app:destination="@id/navigation_home"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainHouseholdRecyclerViewSubCatFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/allSubCategoriesFragment"
         android:name="com.ellipcom.ellipcom.AllSubCategoriesFragment"
         android:label="fragment_all_sub_categories"
-        tools:layout="@layout/fragment_all_sub_categories" />
+        tools:layout="@layout/fragment_all_sub_categories" >
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_allPdtFromConstructionSubCatFragment"
+            app:destination="@id/allPdtFromConstructionSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_allPdtFromEducationSubCatFragment"
+            app:destination="@id/allPdtFromEducationSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment"
+            app:destination="@id/allPdtFromHouseholdSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_allPdtFromRestaurantSubCatFragment"
+            app:destination="@id/allPdtFromRestaurantSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment"
+            app:destination="@id/allPdtFromMedicalSubCatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.ellipcom.ellipcom.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/productDetailsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allPdtFromHouseholdSubCatFragment"
+        android:name="com.ellipcom.ellipcom.AllPdtFromHouseholdSubCatFragment"
+        android:label="fragment_all_pdt_from_household_sub_cat"
+        tools:layout="@layout/fragment_all_pdt_from_household_sub_cat" />
+    <fragment
+        android:id="@+id/allPdtFromMedicalSubCatFragment"
+        android:name="com.ellipcom.ellipcom.AllPdtFromMedicalSubCatFragment"
+        android:label="fragment_all_pdt_from_medical_sub_cat"
+        tools:layout="@layout/fragment_all_pdt_from_medical_sub_cat" />
+    <fragment
+        android:id="@+id/allPdtFromEducationSubCatFragment"
+        android:name="com.ellipcom.ellipcom.AllPdtFromEducationSubCatFragment"
+        android:label="fragment_all_pdt_from_education_sub_cat"
+        tools:layout="@layout/fragment_all_pdt_from_education_sub_cat" />
+    <fragment
+        android:id="@+id/allPdtFromRestaurantSubCatFragment"
+        android:name="com.ellipcom.ellipcom.AllPdtFromRestaurantSubCatFragment"
+        android:label="fragment_all_pdt_from_restaurant_sub_cat"
+        tools:layout="@layout/fragment_all_pdt_from_restaurant_sub_cat" />
+    <fragment
+        android:id="@+id/allPdtFromConstructionSubCatFragment"
+        android:name="com.ellipcom.ellipcom.AllPdtFromConstructionSubCatFragment"
+        android:label="fragment_all_pdt_from_construction_sub_cat"
+        tools:layout="@layout/fragment_all_pdt_from_construction_sub_cat" />
 
 </navigation>

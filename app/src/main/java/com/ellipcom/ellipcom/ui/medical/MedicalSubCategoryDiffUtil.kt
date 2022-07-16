@@ -2,8 +2,6 @@ package com.ellipcom.ellipcom.ui.medical
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
-import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
 
 class MedicalSubCategoryDiffUtil(
     private val oldList: ArrayList<CategoryModel>,

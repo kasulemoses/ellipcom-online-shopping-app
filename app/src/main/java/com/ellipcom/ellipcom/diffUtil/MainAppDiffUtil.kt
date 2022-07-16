@@ -2,7 +2,6 @@ package com.ellipcom.ellipcom.diffUtil
 
 import androidx.recyclerview.widget.DiffUtil
 import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
 
 class MainAppDiffUtil(
     private val oldList: ArrayList<ProductData>,

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
+import com.ellipcom.ellipcom.databinding.MainSubCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
@@ -14,13 +15,13 @@ class HouseholdSubCategoryAdapter(private var oldProductList:ArrayList<CategoryM
 
 
 
-    class ProductsViewHolder(val productItemBinding: MainCategoryListForRecyclerViewBinding) :
+    class ProductsViewHolder(val productItemBinding: MainSubCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         return ProductsViewHolder(
-            MainCategoryListForRecyclerViewBinding.inflate(
+            MainSubCategoryListForRecyclerViewBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false

@@ -2,18 +2,10 @@ package com.ellipcom.ellipcom.ui.foodAndDrinks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
-import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.R
-import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
-import com.ellipcom.ellipcom.databinding.MainProductItemListRecyclerBinding
-import com.ellipcom.ellipcom.diffUtil.MainAppDiffUtil
-import com.ellipcom.ellipcom.diffUtil.MainCategoryDiffUtil
+import com.ellipcom.ellipcom.databinding.MainSubCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.model.CategoryModel
-import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
 import com.squareup.picasso.Picasso
 
 class FoodAndDrinksSubCategoryAdapter(private var oldProductList:ArrayList<CategoryModel>) :
@@ -21,13 +13,13 @@ class FoodAndDrinksSubCategoryAdapter(private var oldProductList:ArrayList<Categ
 
 
 
-    class ProductsViewHolder(val productItemBinding: MainCategoryListForRecyclerViewBinding) :
+    class ProductsViewHolder(val productItemBinding: MainSubCategoryListForRecyclerViewBinding) :
         RecyclerView.ViewHolder(productItemBinding.root)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         return ProductsViewHolder(
-            MainCategoryListForRecyclerViewBinding.inflate(
+            MainSubCategoryListForRecyclerViewBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false

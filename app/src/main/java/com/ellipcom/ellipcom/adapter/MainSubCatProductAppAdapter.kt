@@ -16,11 +16,11 @@ import com.ellipcom.ellipcom.model.DetailPdtModel
 import com.ellipcom.ellipcom.model.ProductData
 import com.squareup.picasso.Picasso
 
-class MainHomeAppAdapter(
+class MainSubCatProductAppAdapter(
     private val oldProductList: ArrayList<ProductData>,
     private val onProductClickListener: OnProductClickListener
 ) :
-    RecyclerView.Adapter<MainHomeAppAdapter.ProductsViewHolder>() {
+    RecyclerView.Adapter<MainSubCatProductAppAdapter.ProductsViewHolder>() {
 
     private var productId = ""
 

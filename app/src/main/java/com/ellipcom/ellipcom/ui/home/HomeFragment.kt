@@ -19,7 +19,7 @@ import com.ellipcom.ellipcom.databinding.FragmentHomeBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.ellipcom.ellipcom.model.ProductData
-import com.ellipcom.ellipcom.model.ProductInformationModel
+import com.ellipcom.ellipcom.model.DetailPdtModel
 import com.ellipcom.ellipcom.ui.home.homeRecyclerviewAdapters.HomeRecyclerviewAdapter1
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
@@ -44,8 +44,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
     private val categoryAdapter by lazy { MainHomeFragmentCategoryAdapter(categoryList) }
 
-    private val productAdapter by lazy { MainHomeAppAdapter(productList,this) }
-    private val productAdapter1 by lazy { MainHomeAppAdapter(productList,this) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList, this) }
+    private val productAdapter1 by lazy { MainHomeAppAdapter(productList, this) }
 
     //firebase
     private lateinit var firebaseDb: FirebaseFirestore
@@ -53,11 +53,11 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
     //recycler views
     private lateinit var recyclerview1Adapter: HomeRecyclerviewAdapter1
     private lateinit var recyclerview1: RecyclerView
-    private lateinit var productList1: ArrayList<ProductInformationModel>
+    private lateinit var productList1: ArrayList<DetailPdtModel>
 
-    private lateinit var categoryRV:RecyclerView
+    private lateinit var categoryRV: RecyclerView
 
-    private lateinit var allProductsRV:RecyclerView
+    private lateinit var allProductsRV: RecyclerView
 
 
     // onDestroyView.
@@ -86,8 +86,50 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
             findNavController().navigate(R.id.action_navigation_home_to_allSubCategoriesFragment)
         }
 
+        imageCaurusel()
 
         return binding.root
+    }
+
+    private fun imageCaurusel() {
+        // Kotlin
+        val carousel: ImageCarousel = binding.carousel
+
+// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragment it will be viewLifecycleOwner/getViewLifecycleOwner().
+        carousel.registerLifecycle(lifecycle)
+
+        val list = mutableListOf<CarouselItem>()
+
+        firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
+            .document(EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
+            .collection("slider_flyers")
+            .addSnapshotListener { value, error ->
+
+                if (error != null) {
+                    Toast.makeText(context, "error occurred" + error.message, Toast.LENGTH_SHORT)
+                        .show()
+                    return@addSnapshotListener
+                }
+
+                if (value != null) {
+
+                    for (product in value.documentChanges) {
+                        if (product.type == DocumentChange.Type.ADDED) {
+
+                            val data = product.document.toObject(CarouselItem::class.java)
+
+                            list.add(data)
+
+
+                        }
+                    }
+                    carousel.setData(list)
+                    carousel.start()
+                }
+
+            }
+
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -96,7 +138,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
         allProductsRV = binding.recyclerViewHomeMain
         allProductsRV.setHasFixedSize(true)
-        allProductsRV.layoutManager =  GridLayoutManager(context, 2)
+        allProductsRV.layoutManager = GridLayoutManager(context, 2)
         allProductsRV.adapter = productAdapter1
 
 
@@ -107,7 +149,11 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
                 .addSnapshotListener { value, error ->
 
                     if (error != null) {
-                        Toast.makeText(context, "error occurred" + error.message, Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            context,
+                            "error occurred" + error.message,
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                         return@addSnapshotListener
                     }
@@ -126,8 +172,8 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
                     productAdapter1.notifyDataSetChanged()
 
                 }
+        } catch (e: Exception) {
         }
-        catch (e: Exception){}
 
     }
 
@@ -136,7 +182,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
         categoryRV = binding.recyclerViewHomeCategory
         categoryRV.setHasFixedSize(true)
-        categoryRV.layoutManager = GridLayoutManager(context,3)
+        categoryRV.layoutManager = GridLayoutManager(context, 3)
         categoryList = ArrayList()
         categoryRV.adapter = categoryAdapter
 
@@ -145,12 +191,17 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
             firebaseDb.collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_DATABASE)
                 .document(
-                    EllipcomAppConstants.ELLIPCOM_APP_CATEGORY)
+                    EllipcomAppConstants.ELLIPCOM_APP_CATEGORY
+                )
                 .collection(EllipcomAppConstants.ELLIPCOM_APP_MAIN_CATEGORY)
                 .addSnapshotListener { value, error ->
 
                     if (error != null) {
-                        Toast.makeText(context, "error occurred" + error.message, Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            context,
+                            "error occurred" + error.message,
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                         return@addSnapshotListener
                     }
@@ -171,8 +222,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
                 }
 
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }
     }
@@ -203,7 +253,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
                     for (product in value.documentChanges) {
                         if (product.type == DocumentChange.Type.ADDED) {
 
-                            productList1.add(product.document.toObject(ProductInformationModel::class.java))
+                            productList1.add(product.document.toObject(DetailPdtModel::class.java))
 
 
                         }
@@ -236,7 +286,7 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
         // If you want auto slide, turn this feature on.
         carousel.autoPlay = true
         carousel.autoPlayDelay = 3000 // Milliseconds
-        carousel.showNavigationButtons =false
+        carousel.showNavigationButtons = false
 
         carousel.touchToPause = true
 
@@ -273,38 +323,13 @@ class HomeFragment : Fragment(), OnProductClickListener, OnCategoryClickListener
 
         carousel.setData(list)
 
-//        // Image URL with caption
-//        list.add(
-//            CarouselItem(
-//                imageUrl = "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-//                caption = "Photo by Aaron Wu on Unsplash"
-//            )
-//        )
-//
-//// Just image URL
-//        list.add(
-//            CarouselItem(
-//                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
-//            )
-//        )
-//
-//// Image URL with header
-//        val headers = mutableMapOf<String, String>()
-//        headers["header_key"] = "header_value"
-//
-//        list.add(
-//            CarouselItem(
-//                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
-//                headers = headers
-//            )
-//        )
 
     }
 
     override fun onProductItemClick(position: Int) {
-        pdtId = productAdapter.saveProductId(position)
-        sharedViewModel.productId(pdtId)
-
+        val dPdtDetails = productAdapter1.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+       findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
     }
 
 

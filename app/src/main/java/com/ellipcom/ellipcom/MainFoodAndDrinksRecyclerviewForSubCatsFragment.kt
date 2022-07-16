@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
+import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainFoodAndDrinksRecyclerviewForSubcatsBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
@@ -22,7 +25,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
+class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() , OnProductClickListener {
 
     //shared view model
     private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
@@ -42,7 +45,7 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { FoodAndDrinksProductAdapter(productList) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList, this) }
     private val subCategoryAdapter by lazy { FoodAndDrinksSubCategoryAdapter(subCategoryList) }
 
 
@@ -155,6 +158,12 @@ class MainFoodAndDrinksRecyclerviewForSubCatsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onProductItemClick(position: Int) {
+        val dPdtDetails = productAdapter.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+        findNavController().navigate(R.id.action_mainFoodAndDrinksRecyclerviewForSubcatsFragment_to_productDetailsFragment)
     }
 
 }

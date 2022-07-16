@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.adapter.MainAppAdapter
+import com.ellipcom.ellipcom.adapter.MainHomeAppAdapter
 import com.ellipcom.ellipcom.databinding.FragmentMainMedicalRecyclerViewForSubCatBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
@@ -22,7 +25,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
+class MainMedicalRecyclerViewForSubCatFragment : Fragment(), OnProductClickListener {
 
     //view binding
     private var _binding: FragmentMainMedicalRecyclerViewForSubCatBinding? = null
@@ -38,7 +41,7 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
     private lateinit var productList: ArrayList<ProductData>
     private lateinit var subCategoryList: ArrayList<CategoryModel>
 
-    private val productAdapter by lazy { MedicalProductAdapter(productList) }
+    private val productAdapter by lazy { MainHomeAppAdapter(productList, this) }
     private val subCategoryAdapter by lazy { MedicalSubCategoryAdapter(subCategoryList) }
 
     //shared view model
@@ -64,15 +67,7 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
         attachSubCategoryRVWithData()
         assigningMainMedicalRecyclerview()
 
-        //shared view model
-//        sharedViewModel.medicalSubCatViewId.observe(viewLifecycleOwner) {
-//            if (it != null) {
-//
-//            } else {
-//                Toast.makeText(context, "there is no viewId", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
+
 
         return binding.root
     }
@@ -157,5 +152,11 @@ class MainMedicalRecyclerViewForSubCatFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onProductItemClick(position: Int) {
+        val dPdtDetails = productAdapter.saveProductId(position)
+        sharedViewModel.savingPdtDetails(dPdtDetails)
+        findNavController().navigate(R.id.action_mainMedicalRecyclerViewForSubCatFragment_to_productDetailsFragment)
     }
 }

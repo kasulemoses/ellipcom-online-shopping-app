@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ellipcom.ellipcom.Interface.OnProductClickListener
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.ProductRecyclerViewItemListBinding
-import com.ellipcom.ellipcom.model.ProductInformationModel
+import com.ellipcom.ellipcom.model.DetailPdtModel
 import com.squareup.picasso.Picasso
 
 class HomeRecyclerviewAdapter1(
-    private val HomeProductAdapter1List: ArrayList<ProductInformationModel>,
+    private val HomeProductAdapter1List: ArrayList<DetailPdtModel>,
     private val onProductClickListener: OnProductClickListener
 ) :
     RecyclerView.Adapter<HomeRecyclerviewAdapter1.HomeViewHolder1>() {

@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.FragmentBottomNavigationCartBinding
 import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
@@ -36,10 +37,14 @@ class BottomNavigationCartFragment : Fragment() {
     //views
     private lateinit var cartRecyclerView: RecyclerView
     private lateinit var cartAdapter: BottomNavCartAdapter
+
     private lateinit var cartItemList: ArrayList<ProductCartModel>
+
     private lateinit var productGrandPrice: TextView
     private lateinit var cartTotalProducts: TextView
     private lateinit var btnCompleteOrder: MaterialButton
+
+    private lateinit var swipeToRefreshCartList:SwipeRefreshLayout
 
     private var grandTotal = 0.0
     private var totalProductsOncart = 0.0
@@ -69,9 +74,14 @@ class BottomNavigationCartFragment : Fragment() {
 
     private fun initViews() {
 
+
+        fireDB = FirebaseFirestore.getInstance()
+        addProductsToCartRecyclerView()
+
         productGrandPrice = binding.productPriceGrandTotal
         btnCompleteOrder = binding.btnCompleteOrder
         cartTotalProducts = binding.totalProductsOnCart
+        swipeToRefreshCartList = binding.swipeRefresh
 
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -94,16 +104,6 @@ class BottomNavigationCartFragment : Fragment() {
         }
 
 
-        fireDB = FirebaseFirestore.getInstance()
-
-        //recycler views
-        cartRecyclerView = binding.cartRecyclerView
-        cartRecyclerView.setHasFixedSize(true)
-        cartRecyclerView.layoutManager = LinearLayoutManager(context)
-        cartItemList = ArrayList()
-        cartAdapter = BottomNavCartAdapter(cartItemList)
-        cartRecyclerView.adapter = cartAdapter
-        addProductsToCartRecyclerView()
 
 
     }
@@ -135,6 +135,15 @@ class BottomNavigationCartFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun addProductsToCartRecyclerView() {
+
+        //recycler views
+        cartRecyclerView = binding.cartRecyclerView
+        cartRecyclerView.setHasFixedSize(true)
+        cartRecyclerView.layoutManager = LinearLayoutManager(context)
+        cartItemList = ArrayList()
+        cartAdapter = BottomNavCartAdapter(cartItemList)
+        cartRecyclerView.adapter = cartAdapter
+
         fireDB.collection(EllipcomAppConstants.ELLIPCOM_APP_CART)
             .document(EllipcomAppConstants.ELLIPCOM_APP_SUB_CART)
             .collection(EllipcomAppConstants.ELLIPCOM_APP_PRODUCTS)
