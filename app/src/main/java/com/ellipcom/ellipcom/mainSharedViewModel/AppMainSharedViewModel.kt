@@ -91,41 +91,8 @@ class AppMainSharedViewModel : ViewModel() {
         _electronicsSubDetails.value = sPd
 
     }
-//    private var _phonesAndTabletsSubDetails = MutableLiveData("1")
-//    var phonesAndTabletsSubDetails:LiveData<String> = _phonesAndTabletsSubDetails
-//    fun savingPhoneAndTabletSubPdtDetails(sPd1:String){
-//        _phonesAndTabletsSubDetails.value = sPd1
-//
-//    }
 
-    private var _homeAndOfficeSubDetails = MutableLiveData("2")
-    var homeAndOfficeSubDetails:LiveData<String> = _homeAndOfficeSubDetails
-    fun savingHomeAndOfficeSubPdtDetails(sPd2:String){
-        _homeAndOfficeSubDetails.value = sPd2
-
-    }
-    private var _computingSubDetails = MutableLiveData("3")
-    var computingSubDetails:LiveData<String> = _computingSubDetails
-    fun savingComputingSubPdtDetails(sPd3:String){
-        _computingSubDetails.value = sPd3
-
-    }
-    private var _furnitureSubDetails = MutableLiveData("4")
-    var furnitureSubDetails:LiveData<String> = _furnitureSubDetails
-    fun savingFurnitureSubPdtDetails(sPd4:String){
-        _furnitureSubDetails.value = sPd4
-
-    }
-
-/*
-    * saving the sub cat name to be transfer to their
-    * corresponding display fragment
-    * */
-
-    //--------------------------------------------------------------------------------------/
-
-
-
+    
 
     private var _foodAndDrinksViewId = MutableLiveData("foodId")
     var foodAndDrinksViewId:LiveData<String> = _foodAndDrinksViewId

@@ -8,28 +8,31 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
-import com.ellipcom.ellipcom.Interface.OnElectronicCategoryClickListener
+import com.ellipcom.ellipcom.Interface.OnEducationSubCategoryClickListener
+import com.ellipcom.ellipcom.Interface.OnHouseHoldSubCategoryClickListener
+import com.ellipcom.ellipcom.Interface.OnMedicalSubCategoryClickListener
 import com.ellipcom.ellipcom.adapter.MainSubCategoryAdapter
 import com.ellipcom.ellipcom.databinding.FragmentAllSubCategoriesBinding
-import com.ellipcom.ellipcom.mainSharedViewModel.AppMainSharedViewModel
-import com.ellipcom.ellipcom.mainSharedViewModel.TestSharedViewModel
 import com.ellipcom.ellipcom.model.CategoryModel
+import com.ellipcom.ellipcom.ui.education.ArtsSubCategoryAdapter
+import com.ellipcom.ellipcom.ui.education.EducServiceSubCategoryAdapter
+import com.ellipcom.ellipcom.ui.education.PrimarySubCategoryAdapter
+import com.ellipcom.ellipcom.ui.education.ScienceSubCategoryAdapter
 import com.ellipcom.ellipcom.ui.houshold.*
+import com.ellipcom.ellipcom.ui.medical.*
 import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import java.io.File
+import java.io.FileOutputStream
 
 
-class AllSubCategoriesFragment : Fragment(),OnElectronicCategoryClickListener {
-
-    private val sharedViewModel: AppMainSharedViewModel by activityViewModels()
-    private val sharedViewModelp: TestSharedViewModel by activityViewModels()
+class AllSubCategoriesFragment : Fragment(), OnHouseHoldSubCategoryClickListener,
+    OnMedicalSubCategoryClickListener, OnEducationSubCategoryClickListener {
 
     private var _binding: FragmentAllSubCategoriesBinding? = null
     private val binding get() = _binding!!
@@ -155,84 +158,99 @@ class AllSubCategoriesFragment : Fragment(),OnElectronicCategoryClickListener {
     private lateinit var electronicsSubCategoriesList: ArrayList<CategoryModel>
     private val electCategoryAdapter by lazy {
         ElectronicsSubCategoryAdapter(
-            electronicsSubCategoriesList
-        ,this)
+            electronicsSubCategoriesList, this
+        )
     }
 
     private lateinit var phonesAndTabletsSubCategoriesList: ArrayList<CategoryModel>
     private val phonesAndTabletsCategoryAdapter by lazy {
         PhonesAndTabletsSubCategoryAdapter(
-            phonesAndTabletsSubCategoriesList
-        ,this)
+            phonesAndTabletsSubCategoriesList, this
+        )
     }
 
     private lateinit var homeAndOfficeSubCategoriesList: ArrayList<CategoryModel>
     private val homeAndOfficeCategoryAdapter by lazy {
         HomeAndOfficeSubCategoryAdapter(
-            homeAndOfficeSubCategoriesList
+            homeAndOfficeSubCategoriesList, this
         )
     }
 
     private lateinit var computingSubCategoriesList: ArrayList<CategoryModel>
     private val computingCategoryAdapter by lazy {
         ComputingSubCategoryAdapter(
-            computingSubCategoriesList
+            computingSubCategoriesList, this
         )
     }
 
     private lateinit var furnitureSubCategoriesList: ArrayList<CategoryModel>
     private val furnitureCategoryAdapter by lazy {
         FurnitureSubCategoryAdapter(
-            furnitureSubCategoriesList
+            furnitureSubCategoriesList, this
         )
     }
 
     //health care
     private lateinit var homeMedicineSubCategoriesList: ArrayList<CategoryModel>
     private val homeMedicineCategoryAdapter by lazy {
-        MainSubCategoryAdapter(
-            homeMedicineSubCategoriesList
+        HMedicineSubCategoryAdapter(
+            homeMedicineSubCategoriesList, this
         )
     }
 
     private lateinit var personalCareSubCategoriesList: ArrayList<CategoryModel>
     private val personalCareCategoryAdapter by lazy {
-        MainSubCategoryAdapter(
-            personalCareSubCategoriesList
+        PCareSubCategoryAdapter(
+            personalCareSubCategoriesList, this
         )
     }
 
     private lateinit var babyLoveSubCategoriesList: ArrayList<CategoryModel>
-    private val babyLoveCategoryAdapter by lazy { MainSubCategoryAdapter(babyLoveSubCategoriesList) }
+    private val babyLoveCategoryAdapter by lazy {
+        BLoveSubCategoryAdapter(
+            babyLoveSubCategoriesList,
+            this
+        )
+    }
 
     private lateinit var medicalServicesSubCategoriesList: ArrayList<CategoryModel>
     private val medicalServicesCategoryAdapter by lazy {
-        MainSubCategoryAdapter(
-            medicalServicesSubCategoriesList
+        MServicesSubCategoryAdapter(
+            medicalServicesSubCategoriesList, this
         )
     }
 
     private lateinit var sexualAndReproductiveHealthSubCategoriesList: ArrayList<CategoryModel>
     private val sexualAndReproductiveHealthCategoryAdapter by lazy {
-        MainSubCategoryAdapter(
-            sexualAndReproductiveHealthSubCategoriesList
+        SRHealthSubCategoryAdapter(
+            sexualAndReproductiveHealthSubCategoriesList, this
         )
     }
 
     //education
     private lateinit var scienceSubCategoriesList: ArrayList<CategoryModel>
-    private val scienceCategoryAdapter by lazy { MainSubCategoryAdapter(scienceSubCategoriesList) }
+    private val scienceCategoryAdapter by lazy {
+        ScienceSubCategoryAdapter(
+            scienceSubCategoriesList,
+            this
+        )
+    }
 
     private lateinit var artSubCategoriesList: ArrayList<CategoryModel>
-    private val artCategoryAdapter by lazy { MainSubCategoryAdapter(artSubCategoriesList) }
+    private val artCategoryAdapter by lazy { ArtsSubCategoryAdapter(artSubCategoriesList, this) }
 
     private lateinit var primarySubCategoriesList: ArrayList<CategoryModel>
-    private val primaryCategoryAdapter by lazy { MainSubCategoryAdapter(primarySubCategoriesList) }
+    private val primaryCategoryAdapter by lazy {
+        PrimarySubCategoryAdapter(
+            primarySubCategoriesList,
+            this
+        )
+    }
 
     private lateinit var educationServicesSubCategoriesList: ArrayList<CategoryModel>
     private val educationServicesCategoryAdapter by lazy {
-        MainSubCategoryAdapter(
-            educationServicesSubCategoriesList
+        EducServiceSubCategoryAdapter(
+            educationServicesSubCategoriesList, this
         )
     }
 
@@ -285,8 +303,7 @@ class AllSubCategoriesFragment : Fragment(),OnElectronicCategoryClickListener {
         catComputingRv = binding.catComputingRv
         catFurnitureRv = binding.catFurnitureRv
 
-        val spanCount:Int = 4
-
+        val spanCount = 4
 
         //electronics sub cats
         catElectronicsRv.setHasFixedSize(true)
@@ -522,7 +539,7 @@ class AllSubCategoriesFragment : Fragment(),OnElectronicCategoryClickListener {
         }
     }
 
-    private fun attachImagesToMainSubCategory(){
+    private fun attachImagesToMainSubCategory() {
 
         val householdImage = binding.householdImage
         val householdTv = binding.tvHousehold
@@ -1561,13 +1578,162 @@ class AllSubCategoriesFragment : Fragment(),OnElectronicCategoryClickListener {
 
     override fun onElectronicCategoryItemClick(position: Int) {
         val catName = electCategoryAdapter.storeSubCatInfo(position)
-        sharedViewModel.savingSubPdtDetails(catName)
+        updateSubCatNameInDb(catName)
+
         findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment)
     }
 
     override fun onPhoneAndTabletsCategoryItemClick(position: Int) {
         val catName = phonesAndTabletsCategoryAdapter.storePhoneAndTabletSubCatInfo(position)
-        sharedViewModelp.savingPhoneAndTabletSubPdtDetails(catName)
+        updateSubCatNameInDb(catName)
+
         findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment)
     }
+
+    override fun onHomeAndOfficeCategoryItemClick(position: Int) {
+        val catName = homeAndOfficeCategoryAdapter.storeHOSubCatInfo(position)
+        updateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment)
+    }
+
+    override fun onComputingCategoryItemClick(position: Int) {
+        val catName = computingCategoryAdapter.storeSubCatInfo(position)
+        updateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment)
+    }
+
+    override fun onFurnitureCategoryItemClick(position: Int) {
+        val catName = furnitureCategoryAdapter.storeSubCatInfo(position)
+        updateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromHouseholdSubCatFragment)
+    }
+
+    private fun updateSubCatNameInDb(catName: String) {
+
+        val fileName = "sub_cat_name.tx"
+        val filePath = requireContext().applicationContext.filesDir
+
+        val file = File(filePath, fileName)
+        val writer = FileOutputStream(file)
+
+        writer.write(catName.toByteArray())
+        writer.close()
+
+    }
+
+    private fun medicalUpdateSubCatNameInDb(catName: String) {
+
+        val fileName = "medical_sub_cat_name.tx"
+        val filePath = requireContext().applicationContext.filesDir
+
+        val file = File(filePath, fileName)
+        val writer = FileOutputStream(file)
+
+        writer.write(catName.toByteArray())
+        writer.close()
+
+    }
+
+    private fun educationUpdateSubCatNameInDb(catName: String) {
+
+        val fileName = "education_sub_cat_name.tx"
+        val filePath = requireContext().applicationContext.filesDir
+
+        val file = File(filePath, fileName)
+        val writer = FileOutputStream(file)
+
+        writer.write(catName.toByteArray())
+        writer.close()
+
+    }
+
+    private fun restaurantUpdateSubCatNameInDb(catName: String) {
+
+        val fileName = "restaurant_sub_cat_name.tx"
+        val filePath = requireContext().applicationContext.filesDir
+
+        val file = File(filePath, fileName)
+        val writer = FileOutputStream(file)
+
+        writer.write(catName.toByteArray())
+        writer.close()
+
+    }
+
+    private fun constructionUpdateSubCatNameInDb(catName: String) {
+
+        val fileName = "construction_sub_cat_name.tx"
+        val filePath = requireContext().applicationContext.filesDir
+
+        val file = File(filePath, fileName)
+        val writer = FileOutputStream(file)
+
+        writer.write(catName.toByteArray())
+        writer.close()
+
+    }
+
+
+    /*
+  * click listener for medicine
+  * */
+    override fun onHMCategoryItemClick(position: Int) {
+        val catName = homeMedicineCategoryAdapter.storeSubCatInfo(position)
+        medicalUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment)
+    }
+
+    override fun onPCareCategoryItemClick(position: Int) {
+        val catName = personalCareCategoryAdapter.storeSubCatInfo(position)
+        medicalUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment)
+    }
+
+    override fun onHBLoveCategoryItemClick(position: Int) {
+        val catName = babyLoveCategoryAdapter.storeSubCatInfo(position)
+        medicalUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment)
+    }
+
+    override fun onSRHCategoryItemClick(position: Int) {
+        val catName = sexualAndReproductiveHealthCategoryAdapter.storeSubCatInfo(position)
+        medicalUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment)
+    }
+
+    override fun onMServicesCategoryItemClick(position: Int) {
+        val catName = medicalServicesCategoryAdapter.storeSubCatInfo(position)
+        medicalUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromMedicalSubCatFragment)
+    }
+
+
+    /*
+    * click listener for education
+    * */
+    override fun onScienceCategoryItemClick(position: Int) {
+        val catName = scienceCategoryAdapter.storeSubCatInfo(position)
+        educationUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromEducationSubCatFragment)
+    }
+
+    override fun onArtsCategoryItemClick(position: Int) {
+        val catName = artCategoryAdapter.storeSubCatInfo(position)
+        educationUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromEducationSubCatFragment)
+    }
+
+    override fun onPrimaryCategoryItemClick(position: Int) {
+        val catName = primaryCategoryAdapter.storeSubCatInfo(position)
+        educationUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromEducationSubCatFragment)
+    }
+
+    override fun onEducServicesCategoryItemClick(position: Int) {
+        val catName = educationServicesCategoryAdapter.storeSubCatInfo(position)
+        educationUpdateSubCatNameInDb(catName)
+        findNavController().navigate(R.id.action_allSubCategoriesFragment_to_allPdtFromEducationSubCatFragment)
+    }
+
+
 }

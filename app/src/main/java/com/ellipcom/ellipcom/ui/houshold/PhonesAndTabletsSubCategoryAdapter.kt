@@ -2,21 +2,16 @@ package com.ellipcom.ellipcom.ui.houshold
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.Interface.OnElectronicCategoryClickListener
+import com.ellipcom.ellipcom.Interface.OnHouseHoldSubCategoryClickListener
 import com.ellipcom.ellipcom.R
-import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.databinding.MainSubCategoryListForRecyclerViewBinding
-import com.ellipcom.ellipcom.diffUtil.MainCategoryDiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
 class PhonesAndTabletsSubCategoryAdapter(
     private val oldProductList: ArrayList<CategoryModel>,
-    private val onCategoryClickListener: OnElectronicCategoryClickListener
+    private val onCategoryClickListener: OnHouseHoldSubCategoryClickListener
 ) :
     RecyclerView.Adapter<PhonesAndTabletsSubCategoryAdapter.ProductsViewHolder>() {
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/allSubCategoriesFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -378,17 +378,31 @@
         android:id="@+id/allPdtFromHouseholdSubCatFragment"
         android:name="com.ellipcom.ellipcom.AllPdtFromHouseholdSubCatFragment"
         android:label="fragment_all_pdt_from_household_sub_cat"
-        tools:layout="@layout/fragment_all_pdt_from_household_sub_cat" />
+        tools:layout="@layout/fragment_all_pdt_from_household_sub_cat" >
+        <action
+            android:id="@+id/action_allPdtFromHouseholdSubCatFragment_to_allSubCategoriesFragment"
+            app:destination="@id/allSubCategoriesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/allPdtFromMedicalSubCatFragment"
         android:name="com.ellipcom.ellipcom.AllPdtFromMedicalSubCatFragment"
         android:label="fragment_all_pdt_from_medical_sub_cat"
-        tools:layout="@layout/fragment_all_pdt_from_medical_sub_cat" />
+        tools:layout="@layout/fragment_all_pdt_from_medical_sub_cat" >
+        <action
+            android:id="@+id/action_allPdtFromMedicalSubCatFragment_to_allSubCategoriesFragment"
+            app:destination="@id/allSubCategoriesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allPdtFromEducationSubCatFragment"
         android:name="com.ellipcom.ellipcom.AllPdtFromEducationSubCatFragment"
         android:label="fragment_all_pdt_from_education_sub_cat"
-        tools:layout="@layout/fragment_all_pdt_from_education_sub_cat" />
+        tools:layout="@layout/fragment_all_pdt_from_education_sub_cat" >
+        <action
+            android:id="@+id/action_allPdtFromEducationSubCatFragment_to_allSubCategoriesFragment"
+            app:destination="@id/allSubCategoriesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allPdtFromRestaurantSubCatFragment"
         android:name="com.ellipcom.ellipcom.AllPdtFromRestaurantSubCatFragment"

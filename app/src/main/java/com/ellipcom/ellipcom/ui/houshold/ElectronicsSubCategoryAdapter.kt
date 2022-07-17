@@ -2,20 +2,16 @@ package com.ellipcom.ellipcom.ui.houshold
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.ellipcom.ellipcom.Interface.OnCategoryClickListener
-import com.ellipcom.ellipcom.Interface.OnElectronicCategoryClickListener
+import com.ellipcom.ellipcom.Interface.OnHouseHoldSubCategoryClickListener
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.MainSubCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.model.CategoryModel
-import com.ellipcom.ellipcom.model.TransmittedSubCatPdts
-import com.ellipcom.ellipcom.utilities.EllipcomAppConstants
 import com.squareup.picasso.Picasso
 
 class ElectronicsSubCategoryAdapter(
     private val oldProductList: ArrayList<CategoryModel>,
-    private val onCategoryClickListener: OnElectronicCategoryClickListener
+    private val onCategoryClickListener: OnHouseHoldSubCategoryClickListener
 ) :
     RecyclerView.Adapter<ElectronicsSubCategoryAdapter.ProductsViewHolder>() {
 
@@ -52,7 +48,7 @@ class ElectronicsSubCategoryAdapter(
     }
 
     fun storeSubCatInfo(position: Int): String {
-      return oldProductList[position].categoryName.toString()
+        return oldProductList[position].categoryName.toString()
 
     }
 

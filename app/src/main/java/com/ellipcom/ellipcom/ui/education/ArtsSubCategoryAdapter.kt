@@ -1,4 +1,4 @@
-package com.ellipcom.ellipcom.adapter
+package com.ellipcom.ellipcom.ui.education
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ellipcom.ellipcom.Interface.OnEducationSubCategoryClickListener
 import com.ellipcom.ellipcom.R
 import com.ellipcom.ellipcom.databinding.MainCategoryListForRecyclerViewBinding
 import com.ellipcom.ellipcom.databinding.MainSubCategoryListForRecyclerViewBinding
@@ -13,9 +14,11 @@ import com.ellipcom.ellipcom.diffUtil.MainCategoryDiffUtil
 import com.ellipcom.ellipcom.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class MainSubCategoryAdapter(private val oldProductList:ArrayList<CategoryModel>) :
-    RecyclerView.Adapter<MainSubCategoryAdapter.ProductsViewHolder>() {
-
+class ArtsSubCategoryAdapter(
+    private val oldProductList: ArrayList<CategoryModel>,
+    private val onCategoryClickListener: OnEducationSubCategoryClickListener
+) :
+    RecyclerView.Adapter<ArtsSubCategoryAdapter.ProductsViewHolder>() {
 
 
     class ProductsViewHolder(val categoryItemBinding: MainSubCategoryListForRecyclerViewBinding) :
@@ -42,8 +45,9 @@ class MainSubCategoryAdapter(private val oldProductList:ArrayList<CategoryModel>
             .into(holder.categoryItemBinding.categoryImage)
 
         holder.categoryItemBinding.cateName.text = oldProductList[position].categoryName
-
-
+        holder.itemView.setOnClickListener {
+            onCategoryClickListener.onArtsCategoryItemClick(position)
+        }
 
     }
 
@@ -51,6 +55,7 @@ class MainSubCategoryAdapter(private val oldProductList:ArrayList<CategoryModel>
         return oldProductList[position].categoryName.toString()
 
     }
+
     override fun getItemCount(): Int {
         return oldProductList.size
     }

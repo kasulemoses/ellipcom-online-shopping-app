@@ -42,7 +42,6 @@
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:fontFamily="sans-serif-condensed"
                     android:gravity="center_vertical"
-                    android:text="hou_sub_cat"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
